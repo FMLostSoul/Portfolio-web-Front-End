@@ -1,0 +1,52 @@
+header{
+    background-color: #0D4754;  
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow: auto;
+}
+
+.headerLeft{
+    display:flex;
+    float:left;
+    justify-content: space-between;
+    width: 15%;
+    
+
+}
+
+.headerLeft p{
+    object-fit: none;
+    color:white;
+}
+
+.headerMiddle{
+    float:left;
+    text-align: center;
+    flex:1;
+}
+.pages li{
+    display: inline-block;
+    margin:2%;
+    
+    border-bottom: 2px solid #066279;
+    
+   
+    
+}
+li a{
+    text-decoration: none;
+    color:white;
+}
+
+.headerRight{
+    float:right;
+}
+
+.login-icon{
+    font-size: 2em;
+    color:white;
+    cursor:pointer;
+}
