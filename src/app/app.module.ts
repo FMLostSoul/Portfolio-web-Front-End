@@ -5,17 +5,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserSocmediaComponent } from './components/user-socmedia/user-socmedia.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserProfileComponent,
+    UserSocmediaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

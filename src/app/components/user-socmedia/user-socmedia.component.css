@@ -1,0 +1,10 @@
+.background{
+    width: 30%;
+    height:30%;
+}
+
+.email-icon{
+    font-size: 2em;
+    position: absolute;
+    color:white;
+}

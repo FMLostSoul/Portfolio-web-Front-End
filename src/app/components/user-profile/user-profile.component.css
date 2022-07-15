@@ -1,0 +1,56 @@
+
+/* TODO todavia no me convence mucho lo que pasa cuando resizeo la pagina, pero es pasable.*/
+/* Tambien ver que hacer con los bordes de .profile*/
+
+.profile{
+    position:absolute;
+    width: 1220px;
+    height: 700px;
+    left:5%;
+    top: 20%;
+    
+    z-index: -1;
+    border:1px solid steelblue
+}
+.wrap{
+    
+    min-width: 600px;
+    min-height: 600px;
+}
+.userBanner{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height:400px;
+    object-fit: cover;
+}
+
+.userPic{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom:30%;
+    left:10%;
+    border-radius: 200px;
+    border:2px solid #032129
+    
+
+}
+
+.userInfo{
+    position: absolute;
+    top:60%;
+    left:30%;
+    width: 450px;
+}
+
+.userName{
+    font-weight: bolder;
+    color:#032129;
+    font-size: 2em;
+    border-bottom:2px solid #032129
+}
+
+.userCareerInfo{
+    font-size: 1.5em;
+}
