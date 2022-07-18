@@ -1,4 +1,5 @@
 header{
+    width:100%;
     background-color: #0D4754;  
     display:flex;
     align-items: center;
@@ -6,15 +7,19 @@ header{
     padding-left: 2%;
     padding-right: 2%;
     overflow: auto;
+    position: fixed;
 }
 
 .headerLeft{
     display:flex;
     float:left;
     justify-content: space-between;
-    width: 15%;
-    
+    width: 17%;
 
+}
+h3{
+    color:white;
+    font-weight:450;
 }
 
 .headerLeft p{
@@ -30,10 +35,7 @@ header{
 .pages li{
     display: inline-block;
     margin:2%;
-    border-bottom: 2px solid #066279;
-    
-   
-    
+    border-bottom: 2px solid #066279;  
 }
 li a{
     text-decoration: none;

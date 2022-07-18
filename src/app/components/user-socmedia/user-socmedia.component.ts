@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons'
-
+import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-user-socmedia',
   templateUrl: './user-socmedia.component.html',
@@ -12,6 +11,5 @@ export class UserSocmediaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  faEnvelope = faEnvelope;
-  
+  faSquareEnvelope = faSquareEnvelope;
 }
