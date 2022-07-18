@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserSocmediaComponent } from './components/user-socmedia/user-socmedia.component';
+import { UserDetailCardComponent } from './components/user-detail-card/user-detail-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UserProfileComponent,
-    UserSocmediaComponent
+    UserSocmediaComponent,
+    UserDetailCardComponent
   ],
   imports: [
     BrowserModule,
