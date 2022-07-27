@@ -3,19 +3,28 @@
     width: 1220px;
     height: 700px;
     left:65px;
-    top: 815px;
+    top: 780px;
     background-color: white;
     z-index: -1;
     border:1px solid #032129
 }
 
+.containerTitle{
+    width: 200px;
+    position: absolute;
+    right: 515px;
+    top:30px;
+    text-align: center;
+    color:rgb(2, 34, 34);
+    border-bottom:2px solid #032129;
+}
 
 .card{
     position: absolute;
     width: 500px;
     height:250px;
-    top:50px;
-    left:100px;
+    top:125px;
+    left:105px;
     border-right:2px solid #032129;
     background-color: rgb(144, 196, 196);
     padding-right:20px;
@@ -33,4 +42,5 @@
     color:#032129;
     padding-left:20px;
     padding-top:10px;
+    text-align: justify;
 }
