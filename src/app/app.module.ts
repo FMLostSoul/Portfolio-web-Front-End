@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserSocmediaComponent } from './components/user-socmedia/user-socmedia.component';
 import { UserDetailCardComponent } from './components/user-detail-card/user-detail-card.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserDetailCardComponent } from './components/user-detail-card/user-deta
     HeaderComponent,
     UserProfileComponent,
     UserSocmediaComponent,
-    UserDetailCardComponent
+    UserDetailCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

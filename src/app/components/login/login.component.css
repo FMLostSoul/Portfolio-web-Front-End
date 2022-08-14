@@ -1,0 +1,54 @@
+.container{
+    position: absolute;
+    position:fixed;
+    top: 20%;
+    left: 32%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height: 400px;
+    width: 500px;
+    border: 2px solid #032129;  
+    background-color: rgb(211, 226, 226);
+   
+}
+
+.close{
+    position: absolute;
+    cursor: pointer;
+    bottom: 330px;
+    right: 60px;
+    font-size: 2em;
+    color:#032129;
+}
+
+label, h1{
+    font-size: 1.5em;
+    font-weight: bolder;
+    color:#032129;
+    border-bottom: 2px solid #032129; 
+    
+}
+
+h1{
+    position:absolute;
+    bottom: 325px;
+}
+input{
+    width: 280px;
+    height: 40px;
+    border: 2px solid #032129;   
+    background-color: #d8eff5;
+    color:#032129;
+
+}
+
+button{
+    background-color: #032129;
+    height: 40px;
+    width: 100px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}

@@ -1,7 +1,7 @@
-<header> <!--TODO Hacer que el header permaneza cuando se scrollee hacia abajo.-->
+<header>
     <div class="headerLeft">
-        <h3>Portfolio Web</h3>
-        <p>#YoProgramo</p>
+
+        <h3>#YoProgramo</h3>
     </div>
 
     <div class="headerMiddle">
@@ -16,8 +16,10 @@
         <fa-icon
         class="login-icon"
         [icon]="faArrowRightToBracket"
+        (click)="toggleShowLogin()"
         >
         </fa-icon> 
+        
    
     </div>
     
