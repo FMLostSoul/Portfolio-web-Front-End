@@ -43,10 +43,13 @@ li a{
 }
 
 .headerRight{
+    width: 90px;
+    display: flex;
     float:right;
+    justify-content: space-between;
 }
 
-.login-icon{
+.login-icon, .edit-icon{
     font-size: 2em;
     color:white;
     cursor:pointer;

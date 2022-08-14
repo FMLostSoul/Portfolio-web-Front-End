@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { UiService } from '../../services/ui.service'
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 faArrowRightToBracket = faArrowRightToBracket;
-
+faPenToSquare = faPenToSquare;
  
   toggleShowLogin(){
     this.UiService.toggleShowLogin();
