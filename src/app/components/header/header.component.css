@@ -8,6 +8,7 @@ header{
     padding-right: 2%;
     overflow: auto;
     position: fixed;
+    z-index: 2;
 }
 
 .headerLeft{

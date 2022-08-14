@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 @Output() btnClick = new EventEmitter()
 
   constructor(private UiService: UiService) {
-    this.UiService.toggleShowLogin()
+    
    }
 
   ngOnInit(): void {
@@ -21,5 +21,9 @@ faPenToSquare = faPenToSquare;
  
   toggleShowLogin(){
     this.UiService.toggleShowLogin();
+  }
+  
+  toggleShowEditForm(){
+    this.UiService.toggleShowEditForm();
   }
 }

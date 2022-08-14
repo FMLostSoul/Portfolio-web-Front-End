@@ -1,7 +1,7 @@
 .container{
     position:absolute;
     width: 1220px;
-    height: 700px;
+    height: 1500px;
     left:65px;
     top: 780px;
     background-color: white;
@@ -31,8 +31,18 @@
 
     
 }
+#C2{
+    left:605px;
+    top:385px;
+    border-right: 0px;
+    border-left: 2px solid #032129;
+}
+#C3{
+    top: 645px;
+}
 
-.title{
+
+#C1 .title, #C2 .title, #C3 .title, #C4 .title{
     padding-top:20px;
     padding-left:20px;
     color:rgb(2, 34, 34);
