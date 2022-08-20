@@ -1,0 +1,60 @@
+<div 
+class="container"
+>
+    <h1>Bienvenido</h1>
+    
+
+    <form [formGroup]="form"   class="loginForm" (ngSubmit)="onSubmit($event)">
+        
+        <label>Email</label>
+        
+        <br/>
+        
+        <input
+        type="text"
+        name="email"
+        placeholder=" Introducir Email"
+        formControlName="email"
+        >
+        <div *ngIf="Email?.errors && Email?.touched">
+            <p *ngIf="Email?.hasError('required')" class="warning">
+                El email es requerido.
+            </p>
+            
+            <p *ngIf="Email?.hasError('email')" class="warning">
+                El formato del Email debe ser válido.
+            </p>
+        </div>
+        
+        <br/><br/>
+        
+        <label>Contraseña</label>
+        
+        <br/>
+        
+        <input
+        type="password"
+        name="password"
+        placeholder=" Introducir Contraseña"
+        formControlName="password"
+        >
+        <div *ngIf="Password?.errors && Password?.touched">
+            <p *ngIf="Password?.hasError('required')" class="warning">
+                La contraseña es requerida.
+            </p>
+            
+            <p *ngIf="Password?.errors?.['minlength']" class="warning">
+                La contraseña debe tener menos de 8 caracteres.
+            </p>
+        </div>
+        <br/><br/>
+
+        <button
+        type="submit"
+        >Iniciar Sesión
+        </button>
+    </form>
+
+
+    
+</div>

@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
-  public showLogin: boolean = false;
+  
+
   public showEditForm: boolean = false;
-  private subject = new Subject<any>();
   private subjectB = new Subject<any>();
-
-
-  public toggleShowLogin(){
-    this.showLogin = !this.showLogin 
-    this.subject.next(this.showLogin);
+ 
+  constructor(private http:HttpClient) { }
+ 
+  getProfileInfo(): Observable<any>{
+    return this.http.get("http://localhost:8080/home");
   }
+
+  getCardInfo(): Observable<any>{
+    return this.http.get("http://localhost:8080/card/showall")
+  }
+
   public toggleShowEditForm(){
     this.showEditForm = !this.showEditForm 
     this.subjectB.next(this.showEditForm);
-  }
- 
-  onToggle():Observable<any>{
-    return this.subject.asObservable();
   }
 
   onToggleB():Observable<any>{
     return this.subjectB.asObservable();
   }
-  constructor() { }
+  
 }

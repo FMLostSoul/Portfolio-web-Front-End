@@ -2,13 +2,13 @@
     <h2 class="title">Contacto</h2>
     <ul>
         <li class="email-item">
-            <a href="#">
+            <a href="mailto:{{userProfile.email}}">
                 <fa-icon
                 class="email-icon"
                 [icon]="faSquareEnvelope"
                 >
                 </fa-icon>
-                <h4 class="email">Loremipsum@hotmail.com</h4>
+                <h4 class="email">{{userProfile.email}}</h4>
             </a>
         </li>
     </ul>

@@ -1,5 +1,5 @@
-export interface userDetailCard{
-    id?:number,
-    title: string,
-    body: string,
+export class UserDetailCard{
+    id?:number;
+    title!: string;
+    body!: string;
 }

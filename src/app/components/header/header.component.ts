@@ -19,9 +19,7 @@ export class HeaderComponent implements OnInit {
 faArrowRightToBracket = faArrowRightToBracket;
 faPenToSquare = faPenToSquare;
  
-  toggleShowLogin(){
-    this.UiService.toggleShowLogin();
-  }
+
   
   toggleShowEditForm(){
     this.UiService.toggleShowEditForm();
