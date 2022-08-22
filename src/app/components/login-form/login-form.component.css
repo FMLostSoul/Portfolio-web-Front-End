@@ -9,18 +9,18 @@
     height: 400px;
     width: 500px;
     border: 2px solid #032129;  
-    background-color: rgb(211, 226, 226);
+    background-color: white;
    
 }
 
-.close{
-    position: absolute;
+.fa-circle-arrow-left{
+    position:absolute; 
     cursor: pointer;
-    bottom: 330px;
-    right: 60px;
-    font-size: 2em;
+    left:20px;
+    top: 20px;
+    transform: scale(2);
     color:#032129;
-}
+ }
 
 label, h1{
     font-size: 1.5em;
@@ -55,4 +55,5 @@ button{
 
 .warning{
     color:rgb(211, 26, 1);
+    font-size: small;
 }

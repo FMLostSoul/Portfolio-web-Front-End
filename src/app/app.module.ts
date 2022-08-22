@@ -11,11 +11,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserSocmediaComponent } from './components/user-socmedia/user-socmedia.component';
 import { UserDetailCardComponent } from './components/user-detail-card/user-detail-card.component';
 import { LoginComponent } from './components/login/login.component';
-import { EditComponent } from './components/edit/edit.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { UiService } from './services/ui.service';
 import { InterceptorService } from './services/interceptor.service';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { InterceptorService } from './services/interceptor.service';
     UserSocmediaComponent,
     UserDetailCardComponent,
     LoginComponent,
-    EditComponent,
+    EditFormComponent,
     PortfolioComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,186 @@
+<!--Por un problema de una actualización de Fontawesome/Angular, uso lo siguiente en vez de su modulo: -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="container">
+
+    <a routerLink="/home">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+    </a>
+  
+    <h1>Editar Portfolio</h1>
+    <br><br>
+   
+    <!--Formulario de edición del Perfil.-->
+
+    <form [formGroup]="editProfileForm" class="editProfileForm" (ngSubmit)="editProfile(editProfileForm.value)">
+        
+       
+    
+        <h2>Perfil</h2>
+        <br>
+        <label>Nombre</label>
+        <br>
+        <input type="text" formControlName="userName" placeholder="{{previewPInfo.userName}}">
+        <br><br>
+        <label>Informacion Profesional</label>
+        <br>        
+        <input type="text" formControlName="careerInfo" placeholder="{{previewPInfo.careerInfo}}">
+        <br><br>
+        <label>Foto de Perfil</label>
+        <br>
+        <input type="file" formControlName="profilePic" class="file">
+        <br><br>
+        <label>Foto de Portada</label>
+        <br>
+        <input type="file" formControlName="profileBanner" class="file">
+        <br><br>
+        <h2>Contacto</h2>
+        <br>
+        <label>Correo</label>
+        <br>
+        <input type="text" formControlName="email" placeholder="{{previewPInfo.email}}">
+        <br><br>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <!--Formularios de edición de tarjetas sobre mí.-->
+    <!--TODO: -Reconstruir los 4 formularios como 1 solo.
+              -Agregar un botón que especifique cuantas tarjetas se quieren mostrar (maximo 4).
+              -El nuevo formulario debe retornar un arreglo de registros(tarjetas).
+              -Usar estructuras iterativas para mostrar cada tarjeta en /home.
+              -Crear métodos POST y DELETE para la creacion y eliminacion de tarjetas.
+    -->
+
+
+    <form [formGroup]="editCardForm" class="editC1Form"  (ngSubmit)="editCard(editCardForm.value)">
+
+        <h2>Sobre mi</h2>
+        <br>
+   
+        
+        <label>Tarjeta 1</label>
+        <br><br>
+        <input type="hidden" formControlName="id">
+        <label>Titulo</label>
+        <br>
+        <input type="text" formControlName="title" placeholder="{{previewC1Info.title}}">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" formControlName="body" placeholder="{{previewC1Info.body}}">
+        <br><br>
+        <button type="submit" (click)="editCardForm.patchValue({'id': previewC1Info.id})">Actualizar</button>
+    </form>
+
+
+        <form [formGroup]="editCardForm" class="editC2Form" (ngSubmit)="editCard(editCardForm.value)">
+        <label>Tarjeta 2</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" formControlName="title" placeholder="{{previewC2Info.title}}">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" formControlName="body" placeholder="{{previewC2Info.body}}">
+        <br><br>
+        <button type="submit" (click)="editCardForm.patchValue({'id': previewC2Info.id})">Actualizar </button>
+    </form>
+
+
+    <form [formGroup]="editCardForm" class="editC3Form" (ngSubmit)="editCard(editCardForm.value)">
+        <label>Tarjeta 3</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" formControlName="title" placeholder="{{previewC3Info.title}}">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" formControlName="body" placeholder="{{previewC3Info.body}}">
+        <br><br>
+        <button type="submit" (click)="editCardForm.patchValue({'id': previewC3Info.id})">Actualizar</button>
+    </form>
+
+
+    <form [formGroup]="editCardForm" class="editC4Form" (ngSubmit)="editCard(editCardForm.value)">
+        <label>Tarjeta 4</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" formControlName="title" placeholder="{{previewC4Info.title}}">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" formControlName="body" placeholder="{{previewC4Info.body}}">
+        <br><br>
+        <button type="submit" (click)="editCardForm.patchValue({'id': previewC4Info.id})">Actualizar</button>
+    </form>
+     
+    <!--Formulario de edición de tarjetas de proyectos-->
+    
+    <form class="editProyectForm">
+        <h2>Proyectos</h2>
+        <br><br>
+        <label>Tarjeta 1</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" name="titleP1">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" name="bodyP1">
+        <br><br>
+
+        <label>Tarjeta 2</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" name="titleP2">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" name="bodyP2">
+        <br><br>
+       
+        <label>Tarjeta 3</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" name="titleP3">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" name="bodyP3">
+        <br><br>
+       
+        <label>Tarjeta 4</label>
+        <br><br>
+       
+        <label>Titulo</label>
+        <br>
+        <input type="text" name="titleP4">
+        <br>
+
+        <label>Cuerpo</label>
+        <br>
+        <input type="text" name="bodyP4">
+        <br><br>
+        
+
+        <button type="submit">Actualizar</button>
+    </form>
+</div>

@@ -1,0 +1,92 @@
+.container{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    height: 1400px;
+    width: 1325px;
+    border: 2px solid #032129;  
+    background-color: white;
+   
+}
+
+.editProfileForm{
+    position: absolute;
+    left:50px;
+    top: 135px;
+}
+
+.editC1Form{
+    position: absolute;
+    left:400px;
+    top:135px
+}
+.editC2Form{
+    position: absolute;
+    left:400px;
+    top:450px
+}
+.editC3Form{
+    position: absolute;
+    left:400px;
+    top:700px
+}
+.editC4Form{
+    position: absolute;
+    left:400px;
+    top:950px
+}
+
+.editProyectForm{
+    position: absolute;
+    left:800px;
+    top:135px
+}
+
+label{
+    font-size: 1em;
+    font-weight: bolder;
+    color:#032129;
+    
+}
+
+h1{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
+
+h2{
+    border-left: 3px solid #032129;
+    padding: 15px;
+}
+input{
+    width: 280px;
+    height: 30px;
+    border: 1px solid #032129;   
+    background-color: #d8eff5;
+    color:#032129;
+
+}
+.file{
+    height:20px;
+}
+
+button{
+    background-color: #032129;
+    height: 40px;
+    width: 100px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+
+.fa-circle-arrow-left{
+    position:absolute; 
+    cursor: pointer;
+    left:60px;
+    top: 20px;
+    transform: scale(2);
+    color:#032129;
+ }

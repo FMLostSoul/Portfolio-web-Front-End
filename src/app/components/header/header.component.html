@@ -13,14 +13,14 @@
     </div>
 
     <div class="headerRight">
-       <fa-icon
+       <a routerLink="/edit/profile"> 
+        <fa-icon
         class="edit-icon"
         [icon]="faPenToSquare"
-        (click)="toggleShowEditForm()"
         >
 
         </fa-icon>
-            
+       </a>  
         <a routerLink="/login">
         <fa-icon
         class="login-icon"

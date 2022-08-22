@@ -21,7 +21,5 @@ faPenToSquare = faPenToSquare;
  
 
   
-  toggleShowEditForm(){
-    this.UiService.toggleShowEditForm();
-  }
+
 }
