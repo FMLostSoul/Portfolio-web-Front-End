@@ -16,21 +16,21 @@ export class UiService {
   constructor(private http:HttpClient) { }
  
   getProfileInfo(): Observable<any>{
-    return this.http.get("http://localhost:8080/home");
+    return this.http.get("https://shielded-dusk-41330.herokuapp.com/home");
   }
 
   editProfile(userEdit: UserProfile): Observable<UserProfile>{
-    return this.http.put<UserProfile>("http://localhost:8080/edit/profile/update", userEdit);
+    return this.http.put<UserProfile>("https://shielded-dusk-41330.herokuapp.com/edit/profile/update", userEdit);
     } 
   
 
 
   getCardInfo(): Observable<any>{
-    return this.http.get("http://localhost:8080/card/showall")
+    return this.http.get("https://shielded-dusk-41330.herokuapp.com/card/showall")
   }
 
   editCard(newCard:UserDetailCard): Observable<UserDetailCard>{
-    return this.http.put<UserDetailCard>("http://localhost:8080/card/edit/" + newCard.id, newCard);
+    return this.http.put<UserDetailCard>("https://shielded-dusk-41330.herokuapp.com/card/edit/" + newCard.id, newCard);
   }
 
   
