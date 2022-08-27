@@ -17,6 +17,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { UiService } from './services/ui.service';
 import { InterceptorService } from './services/interceptor.service';
 import { EditComponent } from './components/edit/edit.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { EditComponent } from './components/edit/edit.component';
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage())
    
   ],
   providers: [UiService,{

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "portfolio-angular-80c26"
+  },
+  "targets": {
+    "portfolio-angular-80c26": {
+      "hosting": {
+        "portfolio-web": [
+          "portfolio-angular-80c26"
+        ]
+      }
+    }
   }
 }

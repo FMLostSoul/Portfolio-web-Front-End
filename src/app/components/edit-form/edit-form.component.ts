@@ -4,7 +4,7 @@ import { UiService } from 'src/app/services/ui.service';
 import { UserProfile } from '../user-profile/user-profile';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDetailCard } from '../user-detail-card/user-detail-card';
-
+import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 
 
 @Component({
@@ -18,7 +18,8 @@ export class EditFormComponent implements OnInit {
   subscription?:Subscription; 
   newProfile!:UserProfile;
   newCard!:UserDetailCard;
-
+  pic!:File;
+  banner!:File;
   
   previewPInfo!:UserProfile;
   previewC1Info!:UserDetailCard;
@@ -33,7 +34,7 @@ export class EditFormComponent implements OnInit {
 
   editProjectForm!: FormGroup;
 
-  constructor(private UiService: UiService, private formBuilder:FormBuilder) {
+  constructor(private UiService: UiService, private formBuilder:FormBuilder, private storage:Storage) {
 
    
     this.editProfileForm = this.formBuilder.group(
@@ -41,8 +42,6 @@ export class EditFormComponent implements OnInit {
       {
         userName:['',[Validators.required]],
         careerInfo:['',[Validators.required]],
-        profilePic:['',[]],
-        profileBanner:['',[]],
         email:['',[Validators.email, Validators.required]]
 
       }
@@ -91,12 +90,11 @@ export class EditFormComponent implements OnInit {
 
   editProfile(newProfile:UserProfile): void{
 
+    this.uploadImages();
     this.UiService.editProfile(newProfile).subscribe(profile =>{
       this.editProfileForm.setValue({
         'userName': newProfile.userName,
         'careerInfo': newProfile.careerInfo,
-        'profilePic': newProfile.profilePic,
-        'profileBanner': newProfile.profileBanner,
         'email': newProfile.email
 
     })
@@ -117,8 +115,18 @@ export class EditFormComponent implements OnInit {
       
     }
 
+    loadPic($event: any){
+      this.pic = $event.target.files[0];
+      console.log(this.pic);
+    }
 
+    loadBanner($event: any){
+      this.banner = $event.target.files[0];
+    }
 
+    uploadImages(){
+      this.UiService.uploadImages(this.pic, this.banner);
+    }
 
 
 }
