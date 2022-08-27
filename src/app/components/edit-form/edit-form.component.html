@@ -27,11 +27,11 @@
         <br><br>
         <label>Foto de Perfil</label>
         <br>
-        <input type="file" formControlName="profilePic" class="file">
+        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" (change)="loadPic($event)">
         <br><br>
         <label>Foto de Portada</label>
         <br>
-        <input type="file" formControlName="profileBanner" class="file">
+        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" (change)="loadBanner($event)">
         <br><br>
         <h2>Contacto</h2>
         <br>
@@ -39,7 +39,7 @@
         <br>
         <input type="text" formControlName="email" placeholder="{{previewPInfo.email}}">
         <br><br>
-        <button type="submit">Actualizar</button>
+        <button type="submit" >Actualizar</button>
     </form>
 
     <!--Formularios de edición de tarjetas sobre mí.-->

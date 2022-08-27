@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  url="localhost:8080/login/auth"
+  url="https://shielded-dusk-41330.herokuapp.com/login/auth"
   currentUserSubject:BehaviorSubject<any>;
   
   constructor(private http:HttpClient) {
