@@ -16,8 +16,8 @@ export class EditFormComponent implements OnInit {
 
 
   subscription?:Subscription; 
-  newProfile!:UserProfile;
-  newCard!:UserDetailCard;
+  newProfile:UserProfile = new UserProfile;
+  newCard:UserDetailCard = new UserDetailCard;
   pic!:File;
   banner!:File;
   

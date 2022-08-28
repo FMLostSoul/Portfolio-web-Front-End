@@ -12,10 +12,7 @@ import { UrlSegment } from '@angular/router';
 })
 export class UiService {
   
-
-
-  
-  newUserProfile!: UserProfile
+  newUserProfile: UserProfile = new UserProfile;
 
   constructor(private http:HttpClient, private storage:Storage) { 
   }
@@ -35,10 +32,10 @@ export class UiService {
     var extension = /image-*/;
 
     //Comparo el tipo del archivo pasado como parámetro con el tipo de archivo que quiero.
-    if(pic.type.match(extension)){
+    if(pic){
     uploadBytes(stgPicRef, pic);
     }
-    if(banner.type.match(extension)){
+    if(banner){
     uploadBytes(stgBannerRef, banner);
     }
   }
