@@ -1,0 +1,14 @@
+.space{
+    height: 5vh;
+}
+
+app-user-profile{
+    display: flex;
+    justify-content: center !important;
+}
+
+app-user-detail-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

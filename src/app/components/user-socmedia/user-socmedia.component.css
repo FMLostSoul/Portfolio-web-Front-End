@@ -1,27 +1,32 @@
 .contact{
-    width:350px;
-    height: 150px;
-    margin:15px;
-    position:absolute;
+    position: relative;
+    top: 2vw;
+    width:25vw;
+    height: auto; 
     border-left:2px solid #032129;
-    padding-top:15px;
-    top:375px;
-    left:850px;
+  
+
    
 }
 .title{
     color:#032129;
-    padding-left:20px;
+    padding-left:2vw;
+    font-size: 2vw;
 }
 li{
     display:flex;
     text-decoration: none;
-    padding-left:20px;
+
     justify-content: space-between;
+    padding-left: 2vw;
+}
+a{
+    display: flex;
+    align-items: center;
 }
 
 .email-icon{
-    font-size: 2em;
+    font-size: 2.5vw;
     color:#032129;
     float:left;
 }
@@ -32,4 +37,58 @@ li{
     text-decoration-color: #85cbdf;
     padding-top:10px;
     padding-left:5px;
+    font-size: 1.09vw;
+}
+
+@media screen and (max-width:425px){
+
+.contact{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75vw;
+    height:auto;
+
+    right: 0%;
+    border-left: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+}
+
+.title{
+
+    width: fit-content;
+    font-size: 7vw;
+    padding: 0;
+    border-bottom: 2px solid #032129;
+    
+    
+}
+
+.email-icon{
+    font-size: 7vw;
+}
+
+.email{
+    font-size: 4.5vw;
+
+}
+
+li{
+    width:auto;
+    text-decoration: none;
+    padding-left: 0%;
+    
+}
+
+ul{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding:0;
+    align-items: center;
+}
 }

@@ -1,14 +1,18 @@
 
-<div class="profile">
-    <div class="wrap">
-        <img class="userBanner" src="{{pictures[0]}}" >
-        <img class="userPic" src="{{pictures[1]}}" alt="fotodeperfil">
+<div class="container">
+    <div class="card">
+      <img class="card-img-top profileBanner" src="{{pictures[0]}}" alt="Card image cap">
+      <div class="card-body">
+          <div class="picContainer">
+            <img class="profPic rounded-circle" src="{{pictures[1]}}">
+          </div>
+          <div class="space"></div>
+          <div class="userInfo">
+            <p class="userName h2">{{userProfile.userName}}</p>
+            <p class="careerInfo">{{userProfile.careerInfo}}</p>
+          </div>
+          <div class="space"></div>
+          <app-user-socmedia></app-user-socmedia>
+        </div>
     </div>
-    <div class="userInfo">
-        <p class="userName">{{userProfile.userName}}</p>
-        <p class="userCareerInfo">{{userProfile.careerInfo}} </p>
-    </div>
-    <app-user-socmedia></app-user-socmedia>
-    
-</div>
-
+  </div>

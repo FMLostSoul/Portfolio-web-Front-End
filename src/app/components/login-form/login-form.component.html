@@ -1,14 +1,16 @@
 <!--Por un problema de una actualización de Fontawesome/Angular, uso lo siguiente en vez de su modulo: -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="wrap">
 <div class="container">
     
     <a routerLink="/home">
         <i class="fa-solid fa-circle-arrow-left"></i>
     </a>
-
+    <div class="dummy">
+    </div>
     <h1>Bienvenido</h1>
-    
-
+    <div class="dummy">
+    </div>
     <form [formGroup]="form"   class="loginForm" (ngSubmit)="onSubmit($event)">
         
         <label>Email</label>
@@ -62,4 +64,5 @@
 
 
     
+</div>
 </div>
