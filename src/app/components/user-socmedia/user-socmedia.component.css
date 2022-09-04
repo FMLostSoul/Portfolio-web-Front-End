@@ -1,8 +1,9 @@
 .contact{
     position: relative;
     top: 2vw;
-    width:25vw;
+    width:fit-content;
     height: auto; 
+    padding: 1vw;
     border-left:2px solid #032129;
   
 
@@ -11,24 +12,25 @@
 .title{
     color:#032129;
     padding-left:2vw;
-    font-size: 2vw;
+    font-size: 1.5rem;
 }
 li{
     display:flex;
     text-decoration: none;
 
     justify-content: space-between;
-    padding-left: 2vw;
+    
 }
 a{
     display: flex;
     align-items: center;
+    
 }
 
 .email-icon{
-    font-size: 2.5vw;
+    font-size: 1.5rem;
     color:#032129;
-    float:left;
+
 }
 
 .email{
@@ -37,7 +39,7 @@ a{
     text-decoration-color: #85cbdf;
     padding-top:10px;
     padding-left:5px;
-    font-size: 1.09vw;
+    font-size: 1rem;
 }
 
 @media screen and (max-width:425px){

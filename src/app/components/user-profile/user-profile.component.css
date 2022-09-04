@@ -1,39 +1,37 @@
 .container{
     display: flex;
+    margin-top: 75px;
     justify-content: center;
-  
+    width: fit-content;
     max-width: 100vw !important;
-   
+    overflow: hidden;
 }
 .card{
     width: 90vw !important;
     height: auto;
     display: flex;
     flex-direction: column;
-    border: 1px solid #032129; 
-    
 }
 
 .card-img-top{
     max-height: 45vh;
-
     object-fit: cover;
 }
 
 .h2{
-    font-size: 2.5vw  !important;
+    font-size: 2rem !important;
     color: #032129;
     border-bottom: 2px solid #032129;
 }
 
 .userInfo{
     width: 30vw;
-    min-width:min-content;
+    min-width: 30vw  !important;
     margin-bottom: 3vw;
 }
 
 .careerInfo{
-    font-size: 1.5vw;
+    font-size: 1.2rem;
 }
 .card-body{
     position: relative;
@@ -44,7 +42,7 @@
 }
 
 .space{
-    width: 6vw;
+    width: 60px;
 }
 .profPic{
     border:2px solid #032129;
@@ -56,12 +54,11 @@
 
 .picContainer{
     position: relative;
-    left: 3vw;
+    margin-left: 5vw;
     bottom:3vw;
-    
 }
 
-@media screen and (max-width:425px){
+@media screen and (max-width:955px){
     
 
 
@@ -90,37 +87,30 @@
 
     }
     .picContainer{
-        left: 0;
- 
+        margin-left:0;
     }
 
     .profPic{
-
         width: 40vw;
         height: 40vw;
-
-
-        
+        max-width: 200px;
+        max-height: 200px;
     }
 
 
     .userInfo{
-       
         display: flex;
         flex-direction: column;
         text-align: center;
         align-items: center;
-        width: 70vw;
-
-       
-        
+        width: 70vw; 
     }
 
     .h2{
-        font-size: 7vw !important;
+        font-size: 2rem !important;
     }
     .careerInfo{
-        font-size: 4.5vw;
+        font-size: 1.2rem;
     }
 
     
