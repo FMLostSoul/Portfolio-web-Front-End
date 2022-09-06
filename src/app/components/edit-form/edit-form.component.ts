@@ -14,7 +14,7 @@ import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 })
 export class EditFormComponent implements OnInit {
 
-
+  cards: number = 4;
   subscription?:Subscription; 
   newProfile:UserProfile = new UserProfile;
   newCard:UserDetailCard = new UserDetailCard;
@@ -29,7 +29,7 @@ export class EditFormComponent implements OnInit {
 
 
   editProfileForm!: FormGroup;
-  //TODO: Reconstruir FormGroups como 1 solo (ver TODO en edit-form.html)
+
   editCardForm!: FormGroup;
 
   editProjectForm!: FormGroup;
@@ -128,7 +128,9 @@ export class EditFormComponent implements OnInit {
       this.UiService.uploadImages(this.pic, this.banner);
     }
 
-
+    createCard(){
+      this.cards = this.cards + 1;
+    }
 }
 
 // TODO: Aplicar este método luego de reorganizar a las tarjetas como un Array de registros.
