@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { UserProfile } from '../user-profile/user-profile';
-import { UiService } from 'src/app/services/ui.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-user-socmedia',
@@ -10,12 +10,14 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class UserSocmediaComponent implements OnInit {
 
-  constructor(private uiService: UiService) { }
-  userProfile!:UserProfile;
+  constructor(private profileService: ProfileService) {
+    this.userProfile = new UserProfile;
+   }
+  
+  userProfile:UserProfile;
 
   ngOnInit(): void {
-    this.uiService.getProfileInfo().subscribe(data=>{
-      console.log(data);
+    this.profileService.getProfileInfo().subscribe(data=>{
       this.userProfile = data;
   })
 }

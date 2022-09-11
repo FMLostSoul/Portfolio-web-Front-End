@@ -8,6 +8,7 @@
     background-color: white;
     min-width: fit-content !important;
     max-width: 90vw !important;
+    height: fit-content;
 }
 .title{
     border-bottom: 2px solid #032129;
@@ -35,14 +36,15 @@ justify-content: center;
 .space{
     height: 5vh;
 }
-#C2, #C4{
-   margin-top: 75px !important;
-   padding-bottom: 75px !important;
+#col2{
+   margin-top: 3rem !important;
+   padding-bottom: 5rem !important;
    margin-left: 15px;
 }
 
-#C1, #C3{
-    margin-bottom: 75px !important;
+#col1{
+    margin-bottom: 4rem !important;
+    padding-bottom: 6rem !important;
 }
 .card-title{
     color:#032129;
@@ -51,7 +53,9 @@ justify-content: center;
 .card-text{
     color:#032129;
 }
-
+.cardsContainer{
+    display: flex;
+}
 .card{
     width: 40vw;
     height: auto;
@@ -64,7 +68,7 @@ justify-content: center;
     .container{
         max-width: 95vw !important;
     }
-    .card-columns{
+    .cardsContainer{
         display: flex;
         flex-direction: column;
         width: 80vw;
@@ -84,14 +88,14 @@ justify-content: center;
         width: 80vw;
     }
 
-    #C2, #C4{
-        margin-top: 20px !important;
+    #col2{
+        margin-top: 1rem !important;
         padding-bottom: 0px !important;
         margin-left: 0;
      }
      
-     #C1, #C3{
-         margin-bottom: 0px !important;
+     #col1{
+        margin-bottom: 2rem !important;
      }
 
 }

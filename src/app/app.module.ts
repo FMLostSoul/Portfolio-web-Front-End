@@ -14,13 +14,19 @@ import { LoginComponent } from './components/login/login.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { EditComponent } from './components/edit/edit.component';
+import { TestEnvComponent } from './components/test-env/test-env.component';
+
 import { UiService } from './services/ui.service';
 import { InterceptorService } from './services/interceptor.service';
-import { EditComponent } from './components/edit/edit.component';
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { TestEnvComponent } from './components/test-env/test-env.component';
+import { ProfileService } from './services/profile.service';
+import { AboutCardService } from './services/about-card.service';
+import { ProjectCardService } from './services/project-card.service';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +52,7 @@ import { TestEnvComponent } from './components/test-env/test-env.component';
     provideStorage(() => getStorage())
    
   ],
-  providers: [UiService,{
+  providers: [ProfileService, AboutCardService, ProjectCardService,{
     provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true
   }],
   bootstrap: [AppComponent]

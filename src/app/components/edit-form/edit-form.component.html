@@ -1,5 +1,14 @@
 <!--Por un problema de una actualización de Fontawesome/Angular, uso lo siguiente en vez de su modulo: -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script>
+$('a[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+	localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
+});
+var activeTab = localStorage.getItem('activeTab');
+if (activeTab) {
+	$('#myTab button[data-bs-target="'+activeTab+'"]').tab('show');
+}
+</script>
 <div class="container">
 
     <a routerLink="/home">
@@ -8,20 +17,20 @@
   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-
 <div class="container shadow rounded">
     <div class="h1 page-title">Editar</div>
-    <div class="nav nav-tabs">
+    <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
-            <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
-            <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" href="#nav-projects" role="tab" aria-controls="nav-projects" aria-selected="false">Proyectos</a>
+            <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
+            <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" data-bs-target="#nav-aboutMe" href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
+            <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" data-bs-target="#nav-projects" href="#nav-projects" role="tab" aria-controls="nav-projects" aria-selected="false">Proyectos</a>
         </div>
-    </div>
+    </nav>
 
+    
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade show" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="card shadow rounded">
                 <div class="card-body">
                     <div class="card-title">
@@ -33,11 +42,11 @@
                                 <div class="profile">
                                     <label>Nombre</label>
                                     <br>
-                                    <input class="text-input" type="text" formControlName="userName" placeholder="{{previewPInfo.userName}}">
+                                    <input class="text-input" type="text" formControlName="userName" placeholder="{{previewProfileInfo.userName}}">
                                     <br><br>
                                     <label>Informacion Profesional</label>
                                     <br>        
-                                    <input class="text-input"type="text" formControlName="careerInfo" placeholder="{{previewPInfo.careerInfo}}">
+                                    <input class="text-input"type="text" formControlName="careerInfo" placeholder="{{previewProfileInfo.careerInfo}}">
                                     <br><br>
                                     <label>Foto de Perfil</label>
                                     <br>
@@ -53,7 +62,7 @@
                                     <br>
                                     <label>Correo</label>
                                     <br>
-                                    <input class="text-input"type="text" formControlName="email" placeholder="{{previewPInfo.email}}">
+                                    <input class="text-input"type="text" formControlName="email" placeholder="{{previewProfileInfo.email}}">
                                     <br><br>
                                 </div>   
                             </div>     
@@ -68,186 +77,98 @@
         </div>
 
 
-        <div class="tab-pane fade" id="nav-aboutMe" role="tabpanel" aria-labelledby="aboutMe-tab">  
+        <div class="tab-pane fade show" id="nav-aboutMe" role="tabpanel" aria-labelledby="nav-aboutMe-tab">  
             <div class="card shadow rounded">
                 <div class="card-body">
                     <div class="card-title">
                         <div class="h2">Sobre mí</div>
                     </div>
+                    
                     <div class="card-text">
+                        <div class="h5">Tarjetas</div>
                         <div class="forms" id="aboutMeForms">    
-                            <form [formGroup]="editCardForm" class="editC1Form" (ngSubmit)="editCard(editCardForm.value)">
+                            <div *ngFor="let card of previewCardInfo">
+                            <button class="delete-button" (click)="deleteCard(card.id)">
+                                    <div class=" btn btn-warning">
+                                        <i class="fa-solid fa-circle-xmark"></i>
 
-                                <div class="h5">Tarjeta 1</div>
+                                    </div>
+                                </button>
+                                
+                            <form [formGroup]="editCardForm" (ngSubmit)="editCard(editCardForm.value)">
+                                
+
                                 <br>
                                 <input type="hidden" formControlName="id">
                                 <label>Titulo</label>
                                 <br>
-                                <input type="text" formControlName="title" placeholder="{{previewC1Info.title}}">
+                                <input type="text" formControlName="title" placeholder="{{card.title}}">
                                 <br>
                         
                                 <label>Cuerpo</label>
                                 <br>
-                                <input type="text" formControlName="body" placeholder="{{previewC1Info.body}}">
+                                <input type="text" formControlName="body" placeholder="{{card.body}}">
                                 <br><br>
-                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': previewC2Info.id})">Actualizar</button>
+                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
                             </form>
-                        
-                            <br>
-
-                            <form [formGroup]="editCardForm" *ngIf="cards >= 2" class="editC2Form" (ngSubmit)="editCard(editCardForm.value)">
-                                <div  class="h5">Tarjeta 2</div>
-                                <br>
+                        </div>
                             
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="{{previewC2Info.title}}">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="{{previewC2Info.body}}">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit">Actualizar</button>
-                            </form>
-                        
-                            <br>
-
-                            <form [formGroup]="editCardForm" *ngIf="cards >= 3"  class="editC3Form" (ngSubmit)="editCard(editCardForm.value)">
-                                <div class="h5">Tarjeta 3</div>
-                                <br>
                             
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="{{previewC3Info.title}}">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="{{previewC3Info.body}}">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': previewC3Info.id})">Actualizar</button>
-                            </form>
-
-                            <br>
-                        
-                            <form [formGroup]="editCardForm" *ngIf="cards >= 4" class="editC4Form" (ngSubmit)="editCard(editCardForm.value)">
-                                <div  class="h5">Tarjeta 4</div>
-                                <br>
-                            
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="{{previewC4Info.title}}">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="{{previewC4Info.body}}">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': previewC4Info.id})" >Actualizar</button>
-                            </form>
-                            
-                            <button *ngIf="!(cards == 4)" id="add-button"(click)="createCard()" >    
+                            <button *ngIf="!(previewCardInfo.length == 4)" id="add-button"(click)="createCard()" >    
                                 <div  class="container shadow rounded" id="add">
                                 <i class="fa-solid fa-plus"></i>
                             </div>
                             </button>
-
                         </div>
-                        
                     </div>
-                    
                 </div>
         </div>
     </div>
-        <div class="tab-pane fade" id="nav-projects" role="tabpanel" aria-labelledby="projects-tab">     
+        <div class="tab-pane fade" id="nav-projects" role="tabpanel" aria-labelledby="nav-projects-tab">     
             <div class="card shadow rounded">
                 <div class="card-body">
                     <div class="card-title">
                         <div class="h2">Proyectos</div>
                     </div>
+                    
                     <div class="card-text">
-                        <div class="forms" id="aboutMeForms">    
-                            <form [formGroup]="editCardForm" class="editP1Form" (ngSubmit)="editCard(editCardForm.value)">
+                        <div class="h5">Tarjetas</div>
+                        <div class="forms" id="projectForms">    
+                            <div *ngFor="let card of previewProjectInfo">
+                            <button class="delete-button" (click)="deleteProject(card.id)">
+                                    <div class=" btn btn-warning">
+                                        <i class="fa-solid fa-circle-xmark"></i>
 
-                                <div class="h5">Tarjeta 1</div>
+                                    </div>
+                                </button>
+                                
+                            <form [formGroup]="editCardForm" (ngSubmit)="editProject(editCardForm.value)">
+                                
+
                                 <br>
                                 <input type="hidden" formControlName="id">
                                 <label>Titulo</label>
                                 <br>
-                                <input type="text" formControlName="title" placeholder="">
+                                <input type="text" formControlName="title" placeholder="{{card.title}}">
                                 <br>
                         
                                 <label>Cuerpo</label>
                                 <br>
-                                <input type="text" formControlName="body" placeholder="">
+                                <input type="text" formControlName="body" placeholder="{{card.body}}">
                                 <br><br>
-                                <button class="btn btn-primary" type="submit">Actualizar</button>
+                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
                             </form>
-                        
-                            <br>
-
-                            <form [formGroup]="editCardForm" class="editP2Form" (ngSubmit)="editCard(editCardForm.value)" >
-                                <div  class="h5">Tarjeta 2</div>
-                                <br>
-                            
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit">Actualizar </button>
-                            </form>
-                        
-                            <br>
-
-                            <form [formGroup]="editCardForm"  class="editP3Form" (ngSubmit)="editCard(editCardForm.value)">
-                                <div class="h5">Tarjeta 3</div>
-                                <br>
-                            
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit">Actualizar</button>
-                            </form>
-
-                            <br>
-                        
-                            <form [formGroup]="editCardForm" class="editP4Form" (ngSubmit)="editCard(editCardForm.value)">
-                                <div  class="h5">Tarjeta 4</div>
-                                <br>
-                            
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit" >Actualizar</button>
-                            </form>
-                            <button  id="add-button"(click)="createCard()" >                        
-                            <div *ngIf="!(cards == 4)" class="container shadow rounded" id="add">
-                                <i class="fa-solid fa-plus"></i>
-                         </div>  
-                        </button>
                         </div>
-                        
+                            
+                            
+                            <button *ngIf="!(previewProjectInfo.length == 4)" id="add-button"(click)="createProject()" >    
+                                <div  class="container shadow rounded" id="add">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
-</div>
+ 

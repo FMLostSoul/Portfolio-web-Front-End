@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UiService } from 'src/app/services/ui.service';
-import { UserProfile } from '../user-profile/user-profile';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserDetailCard } from '../user-detail-card/user-detail-card';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+
+import { ProfileService } from 'src/app/services/profile.service';
+import { AboutCardService } from 'src/app/services/about-card.service';
+import { ProjectCardService } from 'src/app/services/project-card.service';
+
+import { UserProfile } from '../user-profile/user-profile';
+import { UserDetailCard } from '../user-detail-card/user-detail-card';
+import { createCard } from './createCard';
+import { UserProjectCard } from '../user-detail-card/user-project-card';
+
 
 
 @Component({
@@ -13,139 +20,178 @@ import { Storage, ref, uploadBytes } from '@angular/fire/storage';
   styleUrls: ['./edit-form.component.css']
 })
 export class EditFormComponent implements OnInit {
-
-  cards: number = 4;
-  subscription?:Subscription; 
-  newProfile:UserProfile = new UserProfile;
-  newCard:UserDetailCard = new UserDetailCard;
+  response:string = "";
   pic!:File;
   banner!:File;
   
-  previewPInfo!:UserProfile;
-  previewC1Info!:UserDetailCard;
-  previewC2Info!:UserDetailCard;
-  previewC3Info!:UserDetailCard;
-  previewC4Info!:UserDetailCard;
+  subscription?:Subscription; 
+  newProfile:UserProfile;
+  toEditCard:UserDetailCard;
+  newCard:createCard;
+  
+  previewProfileInfo:UserProfile;
+  previewCardInfo:UserDetailCard[];
+  previewProjectInfo:UserProjectCard[];
+
+  editProfileForm:FormGroup;
+  editCardForm:FormGroup;
 
 
-  editProfileForm!: FormGroup;
+  constructor(private aboutCService: AboutCardService, private profileService:ProfileService, private projectCService:ProjectCardService, private formBuilder:FormBuilder, private storage:Storage) {
 
-  editCardForm!: FormGroup;
+    this.previewProfileInfo = new UserProfile;
+    this.previewCardInfo = [];
+    this.previewProjectInfo = [];
+    this.newProfile = new UserProfile;
+    this.toEditCard = new UserDetailCard;
+    this.newCard = new createCard;
 
-  editProjectForm!: FormGroup;
 
-  constructor(private UiService: UiService, private formBuilder:FormBuilder, private storage:Storage) {
-
-   
-    this.editProfileForm = this.formBuilder.group(
-
-      {
+    this.editProfileForm = this.formBuilder.group({
         userName:['',[Validators.required]],
         careerInfo:['',[Validators.required]],
         email:['',[Validators.email, Validators.required]]
-
       }
     )
 
     this.editCardForm = this.formBuilder.group({
-
       id:['',[]],
-      title:['',[]],
-      body:['',[]],
-     
-
-    })
-
-
-
-    this.editProjectForm = this.formBuilder.group({
-
-      titleP1:['',[]],
-      bodyC1:['',[]],
-      titleP2:['',[]],
-      bodyC2:['',[]],
-      titleP3:['',[]],
-      bodyC3:['',[]],
-      titleP4:['',[]],
-      bodyP4:['',[]]
-
+      title:['',[Validators.required]],
+      body:['',[Validators.required]],
     })
 
   }
    
   ngOnInit(): void {
-    this.UiService.getProfileInfo().subscribe(data=>{
-      this.previewPInfo = data;
+    this.profileService.getProfileInfo().subscribe(data=>{
+      this.previewProfileInfo = data;
     });
-
-    this.UiService.getCardInfo().subscribe(data=>{
-      this.previewC1Info = data[0];
-      this.previewC2Info = data[1];
-      this.previewC3Info = data[2];
-      this.previewC4Info = data[3];
-      
-    })
-
+    this.getCards();
+    this.getProjects();
+    this.activeTab();
   }
-
+  //Perfil
   editProfile(newProfile:UserProfile): void{
 
     this.uploadImages();
-    this.UiService.editProfile(newProfile).subscribe(profile =>{
+    this.profileService.editProfile(newProfile).subscribe(profile =>{
       this.editProfileForm.setValue({
         'userName': newProfile.userName,
         'careerInfo': newProfile.careerInfo,
         'email': newProfile.email
-
     })
     })
 
   }
 
-    editCard(newCard:UserDetailCard):void{
-      
-      this.UiService.editCard(newCard).subscribe(c =>{
-        this.editCardForm.setValue({
-          'id': newCard.id,
-          'title': newCard.title,
-          'body': newCard.body
-        })
-        this.editCardForm.reset();
+  loadPic($event: any){
+    this.pic = $event.target.files[0];
+  }
+
+  loadBanner($event: any){
+    this.banner = $event.target.files[0];
+  }
+
+  uploadImages(){
+    this.profileService.uploadImages(this.pic, this.banner);
+  }
+
+  //Sobre mí
+  getCards(){
+    this.aboutCService.getCardInfo().subscribe(data=>{
+      var i: number = 0;
+      for(let card of data){
+        this.previewCardInfo[i] = data[i];
+        i++;
+      }
+
+    })
+  }
+
+  createCard(){
+    this.newCard = {
+      'title': 'Nueva Tarjeta',
+      'body': 'Introducir Contenido'
+    }; 
+    this.aboutCService.createCard(this.newCard).subscribe(data => {
+      window.location.reload();
+    })
+    
+    
+    
+  }
+
+  deleteCard(toDeleteId:number){
+    this.aboutCService.deleteCard(toDeleteId).subscribe(data => {
+      window.location.reload();
+    })
+  }
+
+  editCard(newCard:UserDetailCard):void{
+    
+    this.aboutCService.editCard(newCard).subscribe(c =>{
+      this.editCardForm.setValue({
+        'id': newCard.id,
+        'title': newCard.title,
+        'body': newCard.body
       })
-      
-    }
+      this.editCardForm.reset();
+      window.location.reload();
+    })
+    
+  }
+  //Proyectos
+  getProjects(){
+    this.projectCService.getProjectInfo().subscribe(data => {
+      var i: number = 0;
+      for(let card of data){
+        this.previewProjectInfo[i] = data[i];
+        i++;
+      }
 
-    loadPic($event: any){
-      this.pic = $event.target.files[0];
-      console.log(this.pic);
-    }
+    })
+  }
 
-    loadBanner($event: any){
-      this.banner = $event.target.files[0];
-    }
+  createProject(){
+    this.newCard = {
+      'title': 'Nueva Tarjeta',
+      'body': 'Introducir Contenido'
+    }; 
+    this.projectCService.createProject(this.newCard).subscribe(data =>{
+      window.location.reload();
+    })
+  }
 
-    uploadImages(){
-      this.UiService.uploadImages(this.pic, this.banner);
-    }
+  deleteProject(id:number){
+    this.projectCService.deleteProject(id).subscribe(data =>{
+      window.location.reload();
+    })
+  }
+ 
+  editProject(newCard:UserProjectCard):void{
+    
+    this.projectCService.editProject(newCard).subscribe(c =>{
+      this.editCardForm.setValue({
+        'id': newCard.id,
+        'title': newCard.title,
+        'body': newCard.body
+      })
+      this.editCardForm.reset();
+      window.location.reload();
+    })
+    
+  }
+  //Guardar pestaña activa para restablecer al refrescar la página.
+  activeTab(){
+    $('a[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('data-bs-target')!);
+    });
+    var activeTab = localStorage.getItem('activeTab');
 
-    createCard(){
-      this.cards = this.cards + 1;
+    if (activeTab) {
+      ($('#nav-tab a[data-bs-target="'+activeTab+'"]')as any).addClass('show active');
+      $(activeTab).addClass('show active')
     }
+  }
+    
 }
-
-// TODO: Aplicar este método luego de reorganizar a las tarjetas como un Array de registros.
-//  editCards(newCards:Array<UserDetailCard>): void{
-//   
-//  newCards.forEach(card => {
-//    this.UiService.editCard(card).subscribe(c =>{
-//
-//      this.editCardsForm.setValue({
-//        'title': card.title,
-//        'body': card.body
-//      })
-//      console.log(card);
-//    })
-//   });
-//
-//
-// }

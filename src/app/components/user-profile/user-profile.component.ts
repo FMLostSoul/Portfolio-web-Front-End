@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UiService } from 'src/app/services/ui.service';
+import { ProfileService } from 'src/app/services/profile.service';
 import { UserProfile } from './user-profile';
 @Component({
   selector: 'app-user-profile',
@@ -8,21 +8,23 @@ import { UserProfile } from './user-profile';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private uiService: UiService) {
+  constructor(private profileService: ProfileService) {
     this.pictures=[];
+    this.userProfile = new UserProfile;
   }
+userProfile: UserProfile;
+ 
 
-userProfile!:UserProfile;
 pictures:String[];
 
   ngOnInit(): void{
-    this.uiService.getProfileInfo().subscribe(data=>{
+    this.profileService.getProfileInfo().subscribe(data=>{
       this.userProfile = data;
     })
     
-    this.uiService.getImages();
+    this.profileService.getImages();
     //Recibo el array de strings que contienen las url de las imágenes para luego mostrarlas.
-    this.pictures = this.uiService.getImages();
+    this.pictures = this.profileService.getImages();
     
     
   }

@@ -42,7 +42,7 @@ a{
     font-size: 1rem;
 }
 
-@media screen and (max-width:425px){
+@media screen and (max-width:955px){
 
 .contact{
     position: relative;
@@ -57,13 +57,14 @@ a{
     text-align: center;
     margin: 0;
     padding: 0;
+    border: 0;
 
 }
 
 .title{
 
     width: fit-content;
-    font-size: 7vw;
+    font-size: 1.7rem;
     padding: 0;
     border-bottom: 2px solid #032129;
     
@@ -71,11 +72,11 @@ a{
 }
 
 .email-icon{
-    font-size: 7vw;
+    font-size: 2rem;
 }
 
 .email{
-    font-size: 4.5vw;
+    font-size: 1.2rem;
 
 }
 

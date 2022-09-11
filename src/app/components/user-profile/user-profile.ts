@@ -1,8 +1,9 @@
 
 export  class UserProfile{
+
     id!: number;
-    careerInfo!: string;
-    userName!:string;
-    email!:string;
+    careerInfo: string = ""
+    userName:string = ""
+    email:string = ""
 
 }

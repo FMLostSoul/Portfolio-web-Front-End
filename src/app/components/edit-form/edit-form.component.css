@@ -50,11 +50,12 @@ label{
     display: flex;
 }
 
-#aboutMeForms{
+#aboutMeForms, #projectForms{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 #add{
@@ -76,4 +77,20 @@ label{
 }
 .fa-solid{
     font-size: 2rem;
+}
+
+.delete-button, .btn{
+    border: 0;
+}
+.delete-button{
+    position: relative;
+    bottom:0rem;
+    height:fit-content;
+
+    margin: 0;
+}
+
+.btn-warning, .fa-circle-xmark{
+    height: inherit;
+    font-size: 1.2rem;
 }

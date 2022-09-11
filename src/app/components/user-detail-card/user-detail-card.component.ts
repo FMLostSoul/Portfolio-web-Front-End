@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { UserDetailCard } from './user-detail-card';
-import { UiService } from 'src/app/services/ui.service';
+import { AboutCardService } from 'src/app/services/about-card.service';
+import { UserProjectCard } from './user-project-card';
+import { ProjectCardService } from 'src/app/services/project-card.service';
 @Component({
   selector: 'app-user-detail-card',
   templateUrl: './user-detail-card.component.html',
@@ -8,21 +10,53 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class UserDetailCardComponent implements OnInit {
 
-  card1!:UserDetailCard;
-  card2!:UserDetailCard;
-  card3!:UserDetailCard;
-  card4!:UserDetailCard;
-  
-  constructor(private uiService: UiService) { }
+  constructor(private aboutCService: AboutCardService, private projectCService: ProjectCardService) {
+      this.cardsLeft = [];
+      this.cardsRight = [];
+      this.projectsLeft = [];
+      this.projectsRight = [];
+
+    }
+
+  cardsLeft:UserDetailCard[];
+  cardsRight:UserDetailCard[];
+  projectsLeft:UserProjectCard[];
+  projectsRight:UserProjectCard[];
 
   
   ngOnInit(): void {
-    this.uiService.getCardInfo().subscribe(data=>{
-      console.log(data);
-      this.card1 = data[0];
-      this.card2 = data[1];
-      this.card3 = data[2];
-      this.card4 = data[3];
+    this.aboutCService.getCardInfo().subscribe(data=>{
+      var i: number = 0;
+      var r: number = 0;
+      var l: number = 0;
+      for(let card of data){
+        if(i % 2 == 0){
+          this.cardsLeft[l] = data[i];
+          l++;
+        } else {
+          this.cardsRight[r] = data[i];
+          r++;
+        }
+        i++;
+      }
+
+    })
+
+    this.projectCService.getProjectInfo().subscribe(data=>{
+      var i: number = 0;
+      var r: number = 0;
+      var l: number = 0;
+      for(let card of data){
+        if(i % 2 == 0){
+          this.projectsLeft[l] = data[i];
+          l++;
+        } else {
+          this.projectsRight[r] = data[i];
+          r++;
+        }
+        i++;
+      }
+
     })
   }
 
