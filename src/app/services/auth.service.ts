@@ -12,7 +12,7 @@ import { jwtDTO } from '../components/login-form/jwtDTO';
   providedIn: 'root'
 })
 export class AuthService {
-  url = "https://shielded-dusk-41330.herokuapp.com/auth"
+  url = "https://shielded-dusk-41330.herokuapp.com/auth/"
   currentUserSubject: BehaviorSubject<any>;
   isAuthenticated = false;
   roles: String[] = [];
