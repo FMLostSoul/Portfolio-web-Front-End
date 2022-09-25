@@ -11,26 +11,26 @@ import { ProjectCardService } from 'src/app/services/project-card.service';
 export class UserDetailCardComponent implements OnInit {
 
   constructor(private aboutCService: AboutCardService, private projectCService: ProjectCardService) {
-      this.cardsLeft = [];
-      this.cardsRight = [];
-      this.projectsLeft = [];
-      this.projectsRight = [];
+    this.cardsLeft = [];
+    this.cardsRight = [];
+    this.projectsLeft = [];
+    this.projectsRight = [];
 
-    }
+  }
 
-  cardsLeft:UserDetailCard[];
-  cardsRight:UserDetailCard[];
-  projectsLeft:UserProjectCard[];
-  projectsRight:UserProjectCard[];
+  cardsLeft: UserDetailCard[];
+  cardsRight: UserDetailCard[];
+  projectsLeft: UserProjectCard[];
+  projectsRight: UserProjectCard[];
 
-  
+
   ngOnInit(): void {
-    this.aboutCService.getCardInfo().subscribe(data=>{
+    this.aboutCService.getCardInfo().subscribe(data => {
       var i: number = 0;
       var r: number = 0;
       var l: number = 0;
-      for(let card of data){
-        if(i % 2 == 0){
+      for (let card of data) {
+        if (i % 2 == 0) {
           this.cardsLeft[l] = data[i];
           l++;
         } else {
@@ -42,12 +42,12 @@ export class UserDetailCardComponent implements OnInit {
 
     })
 
-    this.projectCService.getProjectInfo().subscribe(data=>{
+    this.projectCService.getProjectInfo().subscribe(data => {
       var i: number = 0;
       var r: number = 0;
       var l: number = 0;
-      for(let card of data){
-        if(i % 2 == 0){
+      for (let card of data) {
+        if (i % 2 == 0) {
           this.projectsLeft[l] = data[i];
           l++;
         } else {
@@ -59,5 +59,6 @@ export class UserDetailCardComponent implements OnInit {
 
     })
   }
+
 
 }

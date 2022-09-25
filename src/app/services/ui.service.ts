@@ -5,19 +5,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UiService {
-  
- 
-  constructor(private http:HttpClient) { 
+
+
+  constructor(private http: HttpClient) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
- 
+
   apiUrl: String = "https://shielded-dusk-41330.herokuapp.com"
 
- 
-  
 
- 
+
+
+
 }

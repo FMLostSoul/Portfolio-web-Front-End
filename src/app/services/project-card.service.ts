@@ -9,22 +9,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProjectCardService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   apiUrl: String = "https://shielded-dusk-41330.herokuapp.com"
-  getProjectInfo(): Observable<any>{
+  getProjectInfo(): Observable<any> {
     return this.http.get(this.apiUrl + "/project/showall");
   }
 
-  createProject(newProject: createCard): Observable<any>{
+  createProject(newProject: createCard): Observable<any> {
     return this.http.post(this.apiUrl + "/project/create", newProject);
   }
 
-  editProject(newProject:UserProjectCard): Observable<UserProjectCard>{
+  editProject(newProject: UserProjectCard): Observable<UserProjectCard> {
     return this.http.put<UserProjectCard>(this.apiUrl + "/project/edit/" + newProject.id, newProject);
   }
 
-  deleteProject(id: number): Observable<any>{
+  deleteProject(id: number): Observable<any> {
     return this.http.delete(this.apiUrl + "/project/delete/" + id);
   }
 

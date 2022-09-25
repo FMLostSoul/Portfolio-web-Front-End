@@ -1,5 +1,4 @@
-export class createCard{
-    title:string ="";
-    body:string = ""
-
+export class createCard {
+    title: string = "";
+    body: string = ""
 }

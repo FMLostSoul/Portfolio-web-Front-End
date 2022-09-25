@@ -1,6 +1,4 @@
-
-
-.container{
+.container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -10,92 +8,101 @@
     max-width: 90vw !important;
     height: fit-content;
 }
-.title{
+
+.title {
     border-bottom: 2px solid #032129;
     margin: 20px;
 }
 
-h2{
+h2 {
     font-size: 2rem !important;
 }
-h4{
+
+h4 {
     font-size: 1.5rem !important;
 }
 
-p{
+p {
     font-size: 1rem !important;
 }
-.card-columns{
+
+.card-columns {
     display: flex;
     flex-direction: row;
     width: 70vw;
-justify-content: center;
-
-
+    justify-content: center;
 }
-.space{
+
+.space {
     height: 5vh;
 }
-#col2{
-   margin-top: 3rem !important;
-   padding-bottom: 5rem !important;
-   margin-left: 15px;
+
+#col2 {
+    margin-top: 3rem !important;
+    padding-bottom: 5rem !important;
+    margin-left: 15px;
 }
 
-#col1{
+#col1 {
     margin-bottom: 4rem !important;
     padding-bottom: 6rem !important;
 }
-.card-title{
-    color:#032129;
+
+.card-title {
+    color: #032129;
 }
 
-.card-text{
-    color:#032129;
+.card-text {
+    color: #032129;
 }
-.cardsContainer{
+
+.cardsContainer {
     display: flex;
 }
-.card{
+
+.card {
     width: 40vw;
     height: auto;
-    border-left:2px solid #032129;
+    border-left: 2px solid #032129;
     background-color: rgb(144, 196, 196);
-    
 }
 
 @media screen and (max-width: 955px) {
-    .container{
+    .container {
         max-width: 95vw !important;
     }
-    .cardsContainer{
+
+    .cardsContainer {
         display: flex;
         flex-direction: column;
         width: 80vw;
         justify-content: center;
-    
     }
-    h2{
-        font-size: 2rem  !important;
+
+    h2 {
+        font-size: 2rem !important;
     }
-    h4{
+
+    h4 {
         font-size: 1.5rem !important;
     }
-    p{
+
+    p {
         font-size: 1rem !important;
     }
-    .card{
+
+    .card {
         width: 80vw;
     }
 
-    #col2{
+    #col2 {
         margin-top: 1rem !important;
         padding-bottom: 0px !important;
         margin-left: 0;
-     }
-     
-     #col1{
+    }
+
+    #col1 {
         margin-bottom: 2rem !important;
-     }
+    }
 
 }

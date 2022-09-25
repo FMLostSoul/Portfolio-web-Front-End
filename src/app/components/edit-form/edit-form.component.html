@@ -1,174 +1,194 @@
 <!--Por un problema de una actualización de Fontawesome/Angular, uso lo siguiente en vez de su modulo: -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <script>
-$('a[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
-	localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
-});
-var activeTab = localStorage.getItem('activeTab');
-if (activeTab) {
-	$('#myTab button[data-bs-target="'+activeTab+'"]').tab('show');
-}
+    $('a[data-bs-toggle="tab"]').on('show.bs.tab', function (e) {
+        localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show');
+    }
 </script>
 <div class="container">
 
     <a routerLink="/home">
         <i class="fa-solid fa-circle-arrow-left"></i>
     </a>
-  
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<div class="container shadow rounded">
-    <div class="h1 page-title">Editar</div>
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
-            <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" data-bs-target="#nav-aboutMe" href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
-            <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" data-bs-target="#nav-projects" href="#nav-projects" role="tab" aria-controls="nav-projects" aria-selected="false">Proyectos</a>
-        </div>
-    </nav>
+    <div class="container shadow rounded">
+        <div class="h1 page-title">Editar</div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                    href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
+                <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" data-bs-target="#nav-aboutMe"
+                    href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
+                <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" data-bs-target="#nav-projects"
+                    href="#nav-projects" role="tab" aria-controls="nav-projects" aria-selected="false">Proyectos</a>
+            </div>
+        </nav>
 
-    
 
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="card shadow rounded">
-                <div class="card-body">
-                    <div class="card-title">
-                        <div class="h2">Perfil</div>
-                    </div>
-                    <div class="card-text">
-                        <form [formGroup]="editProfileForm" class="editProfileForm" (ngSubmit)="editProfile(editProfileForm.value)">
-                            <div class="forms">    
-                                <div class="profile">
-                                    <label>Nombre</label>
-                                    <br>
-                                    <input class="text-input" type="text" formControlName="userName" placeholder="{{previewProfileInfo.userName}}">
-                                    <br><br>
-                                    <label>Informacion Profesional</label>
-                                    <br>        
-                                    <input class="text-input"type="text" formControlName="careerInfo" placeholder="{{previewProfileInfo.careerInfo}}">
-                                    <br><br>
-                                    <label>Foto de Perfil</label>
-                                    <br>
-                                    <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" >
-                                    <br><br>
-                                    <label>Foto de Portada</label>
-                                    <br>
-                                    <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" >
-                                    <br><br>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Perfil</div>
+                        </div>
+                        <div class="card-text">
+                            <form [formGroup]="editProfileForm" class="editProfileForm"
+                                (ngSubmit)="editProfile(editProfileForm.value)">
+                                <div class="forms">
+                                    <div class="profile">
+                                        <label for="userName">Nombre</label>
+                                        <br>
+                                        <input class="text-input" type="text" formControlName="userName"
+                                            placeholder="{{previewProfileInfo.userName}}">
+                                        <br><br>
+                                        <label for="careerInfo">Informacion Profesional</label>
+                                        <br>
+                                        <input class="text-input" type="text" formControlName="careerInfo"
+                                            placeholder="{{previewProfileInfo.careerInfo}}">
+                                        <br><br>
+                                        <label>Foto de Perfil</label>
+                                        <br>
+                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg">
+                                        <br><br>
+                                        <label>Foto de Portada</label>
+                                        <br>
+                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg">
+                                        <br><br>
+                                    </div>
+                                    <div class="socMedia">
+                                        <div class="h4">Contacto</div>
+                                        <label>Correo</label>
+                                        <br>
+                                        <input class="text-input" type="text" formControlName="email"
+                                            placeholder="{{previewProfileInfo.email}}">
+                                        <br><br>
+                                        <label>Redes Sociales</label>
+                                        <br>
+                                        <label>URL</label>
+                                        <br>
+                                        <input class="text-input" type="url" formControlName="socMedia1">
+                                        <br> <br>
+                                        <label>URL</label>
+                                        <br>
+                                        <input class="text-input" type="url" formControlName="socMedia2">
+                                    </div>
                                 </div>
-                                <div class="socMedia">
-                                    <div class="h4">Contacto</div>
-                                    <br>
-                                    <label>Correo</label>
-                                    <br>
-                                    <input class="text-input"type="text" formControlName="email" placeholder="{{previewProfileInfo.email}}">
-                                    <br><br>
-                                </div>   
-                            </div>     
                                 <div class="submit">
-                                <button class="btn btn-primary" type="submit"  >Actualizar</button>
+                                    <button class="btn btn-primary" type="submit">Actualizar</button>
                                 </div>
-                            
-                        </form>
-                </div>
-            </div>
-            </div>
-        </div>
 
-
-        <div class="tab-pane fade show" id="nav-aboutMe" role="tabpanel" aria-labelledby="nav-aboutMe-tab">  
-            <div class="card shadow rounded">
-                <div class="card-body">
-                    <div class="card-title">
-                        <div class="h2">Sobre mí</div>
-                    </div>
-                    
-                    <div class="card-text">
-                        <div class="h5">Tarjetas</div>
-                        <div class="forms" id="aboutMeForms">    
-                            <div *ngFor="let card of previewCardInfo">
-                            <button class="delete-button" (click)="deleteCard(card.id)">
-                                    <div class=" btn btn-warning">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-
-                                    </div>
-                                </button>
-                                
-                            <form [formGroup]="editCardForm" (ngSubmit)="editCard(editCardForm.value)">
-                                
-
-                                <br>
-                                <input type="hidden" formControlName="id">
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="{{card.title}}">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="{{card.body}}">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
                             </form>
                         </div>
-                            
-                            
-                            <button *ngIf="!(previewCardInfo.length == 4)" id="add-button"(click)="createCard()" >    
-                                <div  class="container shadow rounded" id="add">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                            </button>
-                        </div>
                     </div>
                 </div>
-        </div>
-    </div>
-        <div class="tab-pane fade" id="nav-projects" role="tabpanel" aria-labelledby="nav-projects-tab">     
-            <div class="card shadow rounded">
-                <div class="card-body">
-                    <div class="card-title">
-                        <div class="h2">Proyectos</div>
-                    </div>
-                    
-                    <div class="card-text">
-                        <div class="h5">Tarjetas</div>
-                        <div class="forms" id="projectForms">    
-                            <div *ngFor="let card of previewProjectInfo">
-                            <button class="delete-button" (click)="deleteProject(card.id)">
-                                    <div class=" btn btn-warning">
-                                        <i class="fa-solid fa-circle-xmark"></i>
+            </div>
 
+
+            <div class="tab-pane fade show" id="nav-aboutMe" role="tabpanel" aria-labelledby="nav-aboutMe-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Sobre mí</div>
+                        </div>
+
+                        <div class="card-text">
+                            <div class="h5">Tarjetas</div>
+                            <div class="forms" id="aboutMeForms">
+                                <div *ngFor="let card of previewCardInfo">
+                                    <button class="delete-button" (click)="deleteCard(card.id)">
+                                        <div class=" btn btn-warning">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+
+                                        </div>
+                                    </button>
+
+                                    <form [formGroup]="editCardForm" (ngSubmit)="editCard(editCardForm.value)">
+
+
+                                        <br>
+                                        <input type="hidden" formControlName="id">
+                                        <label for="title">Titulo</label>
+                                        <br>
+                                        <input type="text" formControlName="title" placeholder="{{card.title}}">
+                                        <br>
+
+                                        <label for="body">Cuerpo</label>
+                                        <br>
+                                        <input type="text" formControlName="body" placeholder="{{card.body}}">
+                                        <br><br>
+                                        <button class="btn btn-primary" type="submit"
+                                            (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
+                                    </form>
+                                </div>
+
+
+                                <button *ngIf="!(previewCardInfo.length == 4)" id="add-button" (click)="createCard()">
+                                    <div class="container shadow rounded" id="add">
+                                        <i class="fa-solid fa-plus"></i>
                                     </div>
                                 </button>
-                                
-                            <form [formGroup]="editCardForm" (ngSubmit)="editProject(editCardForm.value)">
-                                
-
-                                <br>
-                                <input type="hidden" formControlName="id">
-                                <label>Titulo</label>
-                                <br>
-                                <input type="text" formControlName="title" placeholder="{{card.title}}">
-                                <br>
-                        
-                                <label>Cuerpo</label>
-                                <br>
-                                <input type="text" formControlName="body" placeholder="{{card.body}}">
-                                <br><br>
-                                <button class="btn btn-primary" type="submit" (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
-                            </form>
-                        </div>
-                            
-                            
-                            <button *ngIf="!(previewProjectInfo.length == 4)" id="add-button"(click)="createProject()" >    
-                                <div  class="container shadow rounded" id="add">
-                                <i class="fa-solid fa-plus"></i>
                             </div>
-                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="tab-pane fade" id="nav-projects" role="tabpanel" aria-labelledby="nav-projects-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Proyectos</div>
+                        </div>
+
+                        <div class="card-text">
+                            <div class="h5">Tarjetas</div>
+                            <div class="forms" id="projectForms">
+                                <div *ngFor="let card of previewProjectInfo; let i = index">
+                                    <button class="delete-button" (click)="deleteProject(card.id)">
+                                        <div class=" btn btn-warning">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+
+                                        </div>
+                                    </button>
+
+                                    <form [formGroup]="editCardForm" (ngSubmit)="editProject(editCardForm.value)">
+
+
+                                        <br>
+                                        <input type="hidden" formControlName="id">
+                                        <label>Titulo</label>
+                                        <br>
+                                        <input type="text" formControlName="title" placeholder="{{card.title}}">
+                                        <br>
+
+                                        <label>Cuerpo</label>
+                                        <br>
+                                        <input type="text" formControlName="body" placeholder="{{card.body}}">
+                                        <br><br>
+                                        <button class="btn btn-primary" type="submit"
+                                            (click)="editCardForm.patchValue({'id': card.id})">Actualizar</button>
+                                    </form>
+                                </div>
+
+
+                                <button *ngIf="!(previewProjectInfo.length == 4)" id="add-button"
+                                    (click)="createProject()">
+                                    <div class="container shadow rounded" id="add">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
- 
+</div>

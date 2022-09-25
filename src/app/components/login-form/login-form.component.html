@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <div class="container rounded shadow">
-    
+
     <a routerLink="/home">
         <i class="fa-solid fa-circle-arrow-left"></i>
     </a>
@@ -11,57 +11,36 @@
     <h1>Bienvenido</h1>
     <div class="dummy">
     </div>
-    <form [formGroup]="form"   class="loginForm" (ngSubmit)="onSubmit($event)">
-        
-        <label>Email</label>
-        
-        <br/>
-        
-        <input
-        type="text"
-        name="email"
-        placeholder=" Introducir Email"
-        formControlName="email"
-        >
-        <div *ngIf="Email?.errors && Email?.touched">
-            <p *ngIf="Email?.hasError('required')" class="warning">
+    <form [formGroup]="form" class="loginForm" (ngSubmit)="logIn(this.form.value)">
+
+        <label>Nombre de Usuario</label>
+        <br />
+        <input type="text" name="userName" placeholder=" Introducir Nombre de Usuario" formControlName="userName">
+        <div *ngIf="userName?.errors && userName?.touched">
+            <p *ngIf="userName?.hasError('required')" class="warning">
                 El email es requerido.
             </p>
-            
-            <p *ngIf="Email?.hasError('email')" class="warning">
-                El formato del Email debe ser válido.
-            </p>
         </div>
-        
-        <br/><br/>
-        
+        <br /><br />
         <label>Contraseña</label>
-        
-        <br/>
-        
-        <input
-        type="password"
-        name="password"
-        placeholder=" Introducir Contraseña"
-        formControlName="password"
-        >
+        <br />
+
+        <input type="password" name="password" placeholder=" Introducir Contraseña" formControlName="password">
         <div *ngIf="Password?.errors && Password?.touched">
             <p *ngIf="Password?.hasError('required')" class="warning">
                 La contraseña es requerida.
             </p>
-            
+
             <p *ngIf="Password?.errors?.['minlength']" class="warning">
                 La contraseña debe tener menos de 8 caracteres.
             </p>
         </div>
-        <br/><br/>
+        <br /><br />
 
-        <button class="btn btn-primary active"
-        type="submit"
-        >Iniciar Sesión
+        <button class="btn btn-primary active" type="submit">Iniciar Sesión
         </button>
     </form>
 
 
-    
+
 </div>

@@ -70,18 +70,15 @@ export class EditFormComponent implements OnInit {
     this.getProjects();
     this.activeTab();
   }
+
   //Perfil
   editProfile(newProfile:UserProfile): void{
 
     this.uploadImages();
-    this.profileService.editProfile(newProfile).subscribe(profile =>{
-      this.editProfileForm.setValue({
-        'userName': newProfile.userName,
-        'careerInfo': newProfile.careerInfo,
-        'email': newProfile.email
+    this.profileService.editProfile(newProfile).subscribe(data =>{
+      window.location.reload();
     })
-    })
-
+    
   }
 
   loadPic($event: any){

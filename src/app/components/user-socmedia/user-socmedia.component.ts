@@ -12,15 +12,15 @@ export class UserSocmediaComponent implements OnInit {
 
   constructor(private profileService: ProfileService) {
     this.userProfile = new UserProfile;
-   }
-  
-  userProfile:UserProfile;
+  }
+
+  userProfile: UserProfile;
 
   ngOnInit(): void {
-    this.profileService.getProfileInfo().subscribe(data=>{
+    this.profileService.getProfileInfo().subscribe(data => {
       this.userProfile = data;
-  })
-}
+    })
+  }
   faSquareEnvelope = faSquareEnvelope;
 
 }

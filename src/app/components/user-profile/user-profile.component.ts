@@ -9,26 +9,23 @@ import { UserProfile } from './user-profile';
 export class UserProfileComponent implements OnInit {
 
   constructor(private profileService: ProfileService) {
-    this.pictures=[];
+    this.pictures = [];
     this.userProfile = new UserProfile;
   }
-userProfile: UserProfile;
- 
+  userProfile: UserProfile;
 
-pictures:String[];
 
-  ngOnInit(): void{
-    this.profileService.getProfileInfo().subscribe(data=>{
+  pictures: String[];
+
+  ngOnInit(): void {
+    this.profileService.getProfileInfo().subscribe(data => {
       this.userProfile = data;
     })
-    
+
     this.profileService.getImages();
     //Recibo el array de strings que contienen las url de las imágenes para luego mostrarlas.
     this.pictures = this.profileService.getImages();
-    
-    
   }
-  
 
-  
+
 }

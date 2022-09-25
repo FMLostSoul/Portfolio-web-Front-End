@@ -2,43 +2,51 @@
 
 <nav class="navbar navbar-expand-xxxl shadow navbar-dark fixed-top ">
     <a class="navbar-brand" href="#">Portfolio Web</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#aboutMe">Sobre mí</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects">Proyectos</a>
-                </li>
- 
-                <div class="buttons">
-                <li class="edit-button">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#aboutMe">Sobre mí</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#projects">Proyectos</a>
+            </li>
 
-                        <a routerLink="/edit/profile"> 
+            <div class="buttons">
+                <li class="edit-button" *ngIf="isAuthenticated">
+
+                    <a routerLink="/edit/profile">
                         <i class="fa-solid fa-pen-to-square"></i>
                         <p>Editar Perfil</p>
-                        </a> 
+                    </a>
 
                 </li>
-                <li class="login-button">  
+
+                <li class="logout-button" *ngIf="isAuthenticated">
+                    <button (click)="logOut()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <p>Cerrar Sesión</p>
+                    </button>
+                </li>
+                <li class="login-button" *ngIf="!isAuthenticated">
 
                     <a routerLink="/login">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        <p>Iniciar Sesion</p>
+                        <p>Iniciar Sesión</p>
                     </a>
-                
+
                 </li>
             </div>
-        
+
         </ul>
-      </div>
+    </div>
 </nav>

@@ -1,5 +1,5 @@
-export class UserDetailCard{
-    id!:number;
-    title!: string;
+export class UserDetailCard {
+    id!: number;
+    title: string = "";
     body: string = " ";
 }

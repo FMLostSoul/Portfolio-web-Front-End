@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     margin-top: 60px;
     justify-content: center;
@@ -6,93 +6,91 @@
     max-width: 100vw !important;
     overflow: hidden;
 }
-.card{
+
+.card {
     width: 90vw !important;
     height: auto;
     display: flex;
     flex-direction: column;
 }
 
-.card-img-top{
+.card-img-top {
     max-height: 50vh;
     object-fit: cover;
 }
 
-.h2{
+.h2 {
     font-size: 2rem !important;
     color: #032129;
     border-bottom: 2px solid #032129;
 }
 
-.userInfo{
+.userInfo {
     width: 30vw;
-    min-width: 30vw  !important;
-
+    min-width: 30vw !important;
 }
 
-.careerInfo{
+.careerInfo {
     font-size: 1.2rem;
 }
-.card-body{
+
+.card-body {
     position: relative;
     display: flex;
     align-items: center;
-    min-height:45vh;
+    min-height: 45vh;
     margin-bottom: 40px;
-    
 }
 
-.space{
+.space {
     width: 60px;
 }
-.profPic{
-    border:2px solid #032129;
+
+.profPic {
+    border: 2px solid #032129;
     width: 15vw;
     height: 15vw;
     object-fit: cover;
-    
+
 }
 
-.picContainer{
+.picContainer {
     position: relative;
     margin-left: 5vw;
-
 }
 
-@media screen and (max-width:955px){
-    
-
-
-    .container{
+@media screen and (max-width:955px) {
+    .container {
         display: flex;
         justify-self: flex-start;
         width: 100vw;
         padding: 0;
         margin-top: 55px;
     }
-    .card{
+
+    .card {
         width: 100vw !important;
-        border: 1px solid #032129; 
     }
-    
-    .space{
+
+    .space {
         display: none;
     }
 
-    .card-body{
+    .card-body {
         flex-direction: column;
-        bottom:10vh;
+        bottom: 10vh;
     }
 
-    .card-img-top{
-       max-height: 40vh;
+    .card-img-top {
+        max-height: 40vh;
 
     }
-    .picContainer{
-        margin-left:0;
+
+    .picContainer {
+        margin-left: 0;
     }
 
-    .profPic{
+    .profPic {
         width: 40vw;
         height: 40vw;
         max-width: 200px;
@@ -100,20 +98,21 @@
     }
 
 
-    .userInfo{
+    .userInfo {
         display: flex;
         flex-direction: column;
         text-align: center;
         align-items: center;
-        width: 70vw; 
+        width: 70vw;
     }
 
-    .h2{
+    .h2 {
         font-size: 2rem !important;
     }
-    .careerInfo{
+
+    .careerInfo {
         font-size: 1.2rem;
     }
 
-    
+
 }

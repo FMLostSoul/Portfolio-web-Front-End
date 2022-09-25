@@ -1,56 +1,70 @@
-.container{
+.container {
     background-color: white;
     min-width: fit-content;
     min-height: fit-content;
     padding: 15px;
 }
 
-.nav-tabs .active, .btn {
+.nav-tabs .active,
+.btn {
     background-color: #043341;
     color: white;
 }
-.nav-tabs{
+
+.nav-tabs {
     border: 0;
 }
-.submit{
+
+.submit {
     align-self: flex-end;
 }
-.nav-link, .h1, .h2, .h4, label, .fa-circle-arrow-left{
-    color:#043341
+
+.nav-link,
+.h1,
+.h2,
+.h4,
+label,
+.fa-circle-arrow-left {
+    color: #043341
 }
-label{
+
+label {
     font-weight: 550;
 }
 
-.text-input{
-    border:1px solid #043341;
-    background-color: #deeff3;;
-}
-.h1, .h2{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    
+.text-input {
+    border: 1px solid #043341;
+    background-color: #deeff3;
+    ;
 }
 
-.card{
+.h1,
+.h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.card {
     width: 80vw;
     min-width: fit-content;
     height: fit-content
 }
 
-.card-title{
-    border-bottom:2px solid #043341;
+.card-title {
+    border-bottom: 2px solid #043341;
 }
 
-.h5{
-   margin-top: 20px;
+.h5 {
+    margin-top: 20px;
 }
 
-.forms{
+.forms {
     display: flex;
 }
 
-#aboutMeForms, #projectForms{
+#aboutMeForms,
+#projectForms {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -58,39 +72,44 @@ label{
     align-items: center;
 }
 
-#add{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-    width: 10vw; 
-  min-height:  20vh; 
-  align-self: center;
-  margin: 0;
- 
+#add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    min-height: 20vh;
+    align-self: center;
+    margin: 0;
+
 }
-#add-button{
+
+#add-button {
     border: 0;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.fa-solid{
+
+.fa-solid {
     font-size: 2rem;
 }
 
-.delete-button, .btn{
+.delete-button,
+.btn {
     border: 0;
 }
-.delete-button{
+
+.delete-button {
     position: relative;
-    bottom:0rem;
-    height:fit-content;
+    bottom: 0rem;
+    height: fit-content;
 
     margin: 0;
 }
 
-.btn-warning, .fa-circle-xmark{
+.btn-warning,
+.fa-circle-xmark {
     height: inherit;
     font-size: 1.2rem;
 }

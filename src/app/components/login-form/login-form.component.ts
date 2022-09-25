@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Login } from './login';
+import { TokenService } from 'src/app/services/token.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -11,37 +13,63 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
- 
-form: FormGroup;
+
+  form: FormGroup;
+  isAuthenticated = false;
+  didLoginFail = false;
+  loginUser!: Login;
+  roles: string[] = [];
 
 
-constructor(private formBuilder:FormBuilder, private authservice:AuthService, private ruta:Router) {
-  this.form = this.formBuilder.group(
+  constructor(private formBuilder: FormBuilder, private authservice: AuthService, private tokenService: TokenService, private route: Router) {
+    this.form = this.formBuilder.group(
 
-    {
-      email:['',[Validators.required, Validators.email]],
-      password:['',[Validators.required, Validators.minLength(8)]]
-    }
-  )
- }
+      {
+        userName: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(6)]]
+      }
+    )
+  }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isAuthenticated = true;
+      this.didLoginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+    }
   }
 
-  get Email(){
-    return this.form.get('email');
+  get userName() {
+    return this.form.get('userName');
   }
 
-  get Password(){
+  get Password() {
     return this.form.get('password')
   }
 
-  onSubmit(event:Event){
-    event.preventDefault;
-    this.authservice.IniciarSesion(this.form.value).subscribe(data=>{
+  logIn(loginData: Login): void {
+    console.log(loginData);
+    this.authservice.logIn(loginData).subscribe(data => {
       console.log("DATA:" + JSON.stringify(data));
-      this.ruta.navigate(['/home'])
-    })
+      this.isAuthenticated = true;
+      this.didLoginFail = false;
+
+      this.tokenService.setToken(data.token);
+      this.tokenService.setUserName(data.userName);
+      this.tokenService.setAuthorities(data.authorities);
+      this.roles = data.authorities;
+
+      this.route.navigate(['/home'])
+
+
+    },
+      err => {
+        this.isAuthenticated = false;
+        this.didLoginFail = true;
+        console.log(err);
+
+      })
+
   }
 
 
