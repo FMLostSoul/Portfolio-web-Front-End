@@ -5,14 +5,14 @@ import { TokenService } from 'src/app/services/token.service';
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { LoginComponent } from '../login/login.component';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() btnClick = new EventEmitter()
-
+  isAuthenticated: boolean = false;
   constructor(private tokenService: TokenService) {
 
   }
@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit {
       this.isAuthenticated = true;
     }
   }
-  isAuthenticated: boolean = false;
-
+ 
   logOut(): void {
     this.tokenService.logOut();
   }

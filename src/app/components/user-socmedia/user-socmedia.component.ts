@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSquareEnvelope, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { UserProfile } from '../user-profile/user-profile';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -22,5 +22,5 @@ export class UserSocmediaComponent implements OnInit {
     })
   }
   faSquareEnvelope = faSquareEnvelope;
-
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 }

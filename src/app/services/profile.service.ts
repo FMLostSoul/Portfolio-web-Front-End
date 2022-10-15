@@ -12,6 +12,7 @@ export class ProfileService {
   constructor(private http: HttpClient, private storage: Storage) {
   }
 
+
   ngOnInit() {
     this.getImages();
   }
@@ -63,5 +64,6 @@ export class ProfileService {
     return this.http.put<UserProfile>(this.apiUrl + "/edit/profile/update", userEdit);
   }
 
+ 
 
 }

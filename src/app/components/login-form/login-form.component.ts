@@ -48,9 +48,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   logIn(loginData: Login): void {
-    console.log(loginData);
-    this.authservice.logIn(loginData).subscribe(data => {
-      console.log("DATA:" + JSON.stringify(data));
+    this.authservice.logIn(loginData).subscribe({
+      next: (data) => {
       this.isAuthenticated = true;
       this.didLoginFail = false;
 
@@ -58,17 +57,16 @@ export class LoginFormComponent implements OnInit {
       this.tokenService.setUserName(data.userName);
       this.tokenService.setAuthorities(data.authorities);
       this.roles = data.authorities;
-
+      
+      
       this.route.navigate(['/home'])
-
-
-    },
-      err => {
+      },
+      error: (err) =>{
         this.isAuthenticated = false;
         this.didLoginFail = true;
         console.log(err);
 
-      })
+      }})
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 
 import { ProfileService } from 'src/app/services/profile.service';
@@ -20,24 +20,24 @@ import { UserProjectCard } from '../user-detail-card/user-project-card';
   styleUrls: ['./edit-form.component.css']
 })
 export class EditFormComponent implements OnInit {
-  response:string = "";
-  pic!:File;
-  banner!:File;
-  
-  subscription?:Subscription; 
-  newProfile:UserProfile;
-  toEditCard:UserDetailCard;
-  newCard:createCard;
-  
-  previewProfileInfo:UserProfile;
-  previewCardInfo:UserDetailCard[];
-  previewProjectInfo:UserProjectCard[];
-
-  editProfileForm:FormGroup;
-  editCardForm:FormGroup;
+  pic!: File;
+  banner!: File;
 
 
-  constructor(private aboutCService: AboutCardService, private profileService:ProfileService, private projectCService:ProjectCardService, private formBuilder:FormBuilder, private storage:Storage) {
+  subscription?: Subscription;
+  newProfile: UserProfile;
+  toEditCard: UserDetailCard;
+  newCard: createCard;
+
+  previewProfileInfo: UserProfile;
+  previewCardInfo: UserDetailCard[];
+  previewProjectInfo: UserProjectCard[];
+
+  editProfileForm: FormGroup;
+  editCardForm: FormGroup;
+  editProjectForm: FormGroup;
+
+  constructor(private aboutCService: AboutCardService, private profileService: ProfileService, private projectCService: ProjectCardService, private formBuilder: FormBuilder, private storage: Storage) {
 
     this.previewProfileInfo = new UserProfile;
     this.previewCardInfo = [];
@@ -48,23 +48,29 @@ export class EditFormComponent implements OnInit {
 
 
     this.editProfileForm = this.formBuilder.group({
-        userName:['',[Validators.required]],
-        careerInfo:['',[Validators.required]],
-        email:['',[Validators.email, Validators.required]]
-      }
+      userName: ['', [Validators.required]],
+      careerInfo: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      urls: this.formBuilder.array([])
+    }
     )
 
+
     this.editCardForm = this.formBuilder.group({
-      id:['',[]],
-      title:['',[Validators.required]],
-      body:['',[Validators.required]],
-    })
+      card: new FormArray([])
+    });
+
+    this.editProjectForm = this.formBuilder.group({
+      project: new FormArray([])
+    });
 
   }
-   
+
   ngOnInit(): void {
-    this.profileService.getProfileInfo().subscribe(data=>{
+    this.profileService.getProfileInfo().subscribe(data => {
       this.previewProfileInfo = data;
+      this.setProfileForms();
+      this.setUrlForms();
     });
     this.getCards();
     this.getProjects();
@@ -72,123 +78,189 @@ export class EditFormComponent implements OnInit {
   }
 
   //Perfil
-  editProfile(newProfile:UserProfile): void{
+  editProfile(newProfile: UserProfile): void {
 
     this.uploadImages();
-    this.profileService.editProfile(newProfile).subscribe(data =>{
+    this.profileService.editProfile(newProfile).subscribe({
+      next: (data) => {
       window.location.reload();
-    })
-    
+    },
+    error: (err) =>{
+      console.log(err);
+
+    }
+  })
   }
 
-  loadPic($event: any){
+  loadPic($event: any) {
     this.pic = $event.target.files[0];
   }
 
-  loadBanner($event: any){
+  loadBanner($event: any) {
     this.banner = $event.target.files[0];
   }
 
-  uploadImages(){
+  uploadImages() {
     this.profileService.uploadImages(this.pic, this.banner);
   }
 
+  get urls(): FormArray {
+    return this.editProfileForm.controls["urls"] as FormArray;
+  }
+
+  setUrlForms(): void {
+    this.previewProfileInfo.urls.forEach(url => {
+      (<FormArray>this.editProfileForm.controls['urls']).push(
+        new FormControl(url.url)
+      )
+    });
+  }
+
+  setProfileForms(): void {
+    this.editProfileForm.setValue({
+      userName: this.previewProfileInfo.userName,
+      careerInfo: this.previewProfileInfo.careerInfo,
+      email: this.previewProfileInfo.email,
+      urls: []
+    });
+  }
+
+  get profile(): UserProfile{
+    return this.editProfileForm.value as UserProfile;
+  }
+  
+
+
+
   //Sobre mí
-  getCards(){
-    this.aboutCService.getCardInfo().subscribe(data=>{
+  getCards() {
+    this.aboutCService.getCardInfo().subscribe(data => {
       var i: number = 0;
-      for(let card of data){
+      for (let card of data) {
         this.previewCardInfo[i] = data[i];
         i++;
       }
+      this.setCardForms();
 
     })
   }
 
-  createCard(){
+  setCardForms(): void {
+    this.previewCardInfo.forEach(card => {
+      this.cardForms.push(
+        new FormGroup({
+          id: new FormControl(card.id),
+          title: new FormControl(card.title),
+          body: new FormControl(card.body),
+        })
+      )
+    })
+  }
+
+  get cardForms(): FormArray {
+    return this.editCardForm.controls['card'] as FormArray;
+  }
+
+  createCard() {
     this.newCard = {
       'title': 'Nueva Tarjeta',
       'body': 'Introducir Contenido'
-    }; 
+    };
     this.aboutCService.createCard(this.newCard).subscribe(data => {
       window.location.reload();
     })
-    
-    
-    
+
+
+
   }
 
-  deleteCard(toDeleteId:number){
+  deleteCard(toDeleteId: number) {
     this.aboutCService.deleteCard(toDeleteId).subscribe(data => {
       window.location.reload();
     })
   }
 
-  editCard(newCard:UserDetailCard):void{
-    
-    this.aboutCService.editCard(newCard).subscribe(c =>{
-      this.editCardForm.setValue({
-        'id': newCard.id,
-        'title': newCard.title,
-        'body': newCard.body
-      })
-      this.editCardForm.reset();
+  editCard(newCard: UserDetailCard): void {
+    this.aboutCService.editCard(newCard).subscribe({
+      next: (c)=>{
       window.location.reload();
-    })
-    
+    },
+    error: (err) =>{
+      console.error(err)
+    }
+  })
+
   }
   //Proyectos
-  getProjects(){
+  getProjects() {
     this.projectCService.getProjectInfo().subscribe(data => {
       var i: number = 0;
-      for(let card of data){
+      for (let card of data) {
         this.previewProjectInfo[i] = data[i];
         i++;
       }
-
+      this.setProjectForms();
     })
   }
 
-  createProject(){
+  setProjectForms(): void {
+    this.previewProjectInfo.forEach(project => {
+      this.projectForms.push(
+        new FormGroup({
+          id: new FormControl(project.id),
+          title: new FormControl(project.title),
+          body: new FormControl(project.body),
+        })
+      )
+    })
+  }
+
+  get projectForms(): FormArray {
+    return this.editProjectForm.controls['project'] as FormArray;
+  }
+
+  createProject() {
     this.newCard = {
       'title': 'Nueva Tarjeta',
       'body': 'Introducir Contenido'
-    }; 
-    this.projectCService.createProject(this.newCard).subscribe(data =>{
+    };
+    this.projectCService.createProject(this.newCard).subscribe(data => {
       window.location.reload();
     })
   }
 
-  deleteProject(id:number){
-    this.projectCService.deleteProject(id).subscribe(data =>{
+  deleteProject(id: number) {
+    this.projectCService.deleteProject(id).subscribe(data => {
       window.location.reload();
     })
   }
- 
-  editProject(newCard:UserProjectCard):void{
-    
-    this.projectCService.editProject(newCard).subscribe(c =>{
-      this.editCardForm.setValue({
-        'id': newCard.id,
-        'title': newCard.title,
-        'body': newCard.body
-      })
-      this.editCardForm.reset();
+
+  editProject(newCard: UserProjectCard): void {
+
+    this.projectCService.editProject(newCard).subscribe({
+      next: (c) => {
       window.location.reload();
-    })
-    
+    },
+    error: (err) => {
+      console.error(err)
+    }})
+
   }
   //Guardar pestaña activa para restablecer al refrescar la página.
-  activeTab(){
-    $('a[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+  activeTab() {
+    $('a[data-bs-toggle="tab"]').on('show.bs.tab', function (e) {
       localStorage.setItem('activeTab', $(e.target).attr('data-bs-target')!);
     });
     var activeTab = localStorage.getItem('activeTab');
 
     if (activeTab) {
-      ($('#nav-tab a[data-bs-target="'+activeTab+'"]')as any).addClass('show active');
+      ($('#nav-tab a[data-bs-target="' + activeTab + '"]') as any).addClass('show active');
       $(activeTab).addClass('show active')
     }
   }
-    
+
+
+
+
+
 }

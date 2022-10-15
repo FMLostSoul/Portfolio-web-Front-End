@@ -1,12 +1,18 @@
 <div class="contact">
-    <h2 class="title">Contacto</h2>
+    <h2 class="title">Contacto y Redes Sociales</h2>
     <ul>
         <li class="email-item">
             <a href="mailto:{{userProfile.email}}">
-                <fa-icon class="email-icon" [icon]="faSquareEnvelope">
+                <fa-icon class="icon" [icon]="faSquareEnvelope">
                 </fa-icon>
-                <h4 class="email">{{userProfile.email}}</h4>
+                <h4 class="item">{{userProfile.email}}</h4>
             </a>
         </li>
+        <div *ngFor="let url of userProfile.urls; let i = index">
+        <li>
+            <fa-icon class="icon" [icon]="faArrowUpRightFromSquare"></fa-icon>
+            <a href="{{userProfile.urls[i].url}}"><h4 class="item">{{userProfile.urls[i].url}}</h4></a>
+        </li>
+    </div>
     </ul>
 </div>

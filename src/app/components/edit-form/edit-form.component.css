@@ -1,3 +1,5 @@
+
+
 .container {
     background-color: white;
     min-width: fit-content;
@@ -15,9 +17,7 @@
     border: 0;
 }
 
-.submit {
-    align-self: flex-end;
-}
+
 
 .nav-link,
 .h1,
@@ -35,7 +35,6 @@ label {
 .text-input {
     border: 1px solid #043341;
     background-color: #deeff3;
-    ;
 }
 
 .h1,
@@ -61,6 +60,7 @@ label {
 
 .forms {
     display: flex;
+    flex-direction: column;
 }
 
 #aboutMeForms,
@@ -112,4 +112,21 @@ label {
 .fa-circle-xmark {
     height: inherit;
     font-size: 1.2rem;
+}
+
+@media screen and (max-width: 770px) {
+
+    .card-body{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .forms{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .submit {
+        align-self: flex-start;
+    }
 }

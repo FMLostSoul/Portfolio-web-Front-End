@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +50,14 @@ import { ProjectCardService } from './services/project-card.service';
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    NgxPageScrollCoreModule,
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      animationDuration: 300,
+    }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage())
    
