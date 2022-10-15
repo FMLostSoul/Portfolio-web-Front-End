@@ -11,6 +11,10 @@ import { UserProfile } from '../user-profile/user-profile';
 import { UserDetailCard } from '../user-detail-card/user-detail-card';
 import { createCard } from './createCard';
 import { UserProjectCard } from '../user-detail-card/user-project-card';
+import { SkillCircle } from '../skills/skillCircle';
+import { SkillService } from 'src/app/services/skill.service';
+import { createSkill } from './createSkill';
+import { data } from 'jquery';
 
 
 
@@ -28,23 +32,33 @@ export class EditFormComponent implements OnInit {
   newProfile: UserProfile;
   toEditCard: UserDetailCard;
   newCard: createCard;
+  newSkillCircle: createSkill;
 
   previewProfileInfo: UserProfile;
   previewCardInfo: UserDetailCard[];
   previewProjectInfo: UserProjectCard[];
+  previewSkillsInfo: SkillCircle[];
 
   editProfileForm: FormGroup;
+  editSkillForm: FormGroup;
   editCardForm: FormGroup;
   editProjectForm: FormGroup;
 
-  constructor(private aboutCService: AboutCardService, private profileService: ProfileService, private projectCService: ProjectCardService, private formBuilder: FormBuilder, private storage: Storage) {
+  constructor(private skillCService: SkillService,
+    private aboutCService: AboutCardService,
+    private profileService: ProfileService,
+    private projectCService: ProjectCardService,
+    private formBuilder: FormBuilder,
+    private storage: Storage) {
 
     this.previewProfileInfo = new UserProfile;
     this.previewCardInfo = [];
     this.previewProjectInfo = [];
+    this.previewSkillsInfo = [];
     this.newProfile = new UserProfile;
     this.toEditCard = new UserDetailCard;
     this.newCard = new createCard;
+    this.newSkillCircle = new createSkill
 
 
     this.editProfileForm = this.formBuilder.group({
@@ -52,8 +66,11 @@ export class EditFormComponent implements OnInit {
       careerInfo: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       urls: this.formBuilder.array([])
-    }
-    )
+    });
+
+    this.editSkillForm = this.formBuilder.group({
+      skill: new FormArray([])
+    })
 
 
     this.editCardForm = this.formBuilder.group({
@@ -73,6 +90,7 @@ export class EditFormComponent implements OnInit {
       this.setUrlForms();
     });
     this.getCards();
+    this.getSkills();
     this.getProjects();
     this.activeTab();
   }
@@ -83,13 +101,13 @@ export class EditFormComponent implements OnInit {
     this.uploadImages();
     this.profileService.editProfile(newProfile).subscribe({
       next: (data) => {
-      window.location.reload();
-    },
-    error: (err) =>{
-      console.log(err);
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err);
 
-    }
-  })
+      }
+    })
   }
 
   loadPic($event: any) {
@@ -125,11 +143,79 @@ export class EditFormComponent implements OnInit {
     });
   }
 
-  get profile(): UserProfile{
+  get profile(): UserProfile {
     return this.editProfileForm.value as UserProfile;
   }
-  
 
+  //Habilidades
+  get skillForms(): FormArray {
+    return this.editSkillForm.controls['skill'] as FormArray;
+  }
+
+  getSkills() {
+    this.skillCService.getSkillCircles().subscribe({
+      next: (data) => {
+        for (let circle of data) {
+          this.previewSkillsInfo.push(circle);
+        }
+        this.setSkillsForm();
+      },
+
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  setSkillsForm() {
+    this.previewSkillsInfo.forEach(circle => {
+      this.skillForms.push(new FormGroup({
+        id: new FormControl(circle.id),
+        percent: new FormControl(circle.percent),
+        skill: new FormControl(circle.skill)
+      }))
+    })
+  }
+
+  createSkillCircle() {
+    this.newSkillCircle = {
+      'percent': 0,
+      'skill': 'Nueva Habilidad'
+    }
+    this.skillCService.createSkillCircle(this.newSkillCircle).subscribe({
+      next: (data) => {
+        window.location.reload();
+      },
+
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+  deleteSkill(circleId: number) {
+    this.skillCService.deleteSkillCircle(circleId).subscribe({
+      next: (data) => {
+        window.location.reload();
+      },
+
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  editSkill(newCircle: SkillCircle) {
+    this.skillCService.editSkillCircle(newCircle).subscribe({
+      next: (data) => {
+        window.location.reload();
+      },
+
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
 
 
   //Sobre mí
@@ -169,9 +255,6 @@ export class EditFormComponent implements OnInit {
     this.aboutCService.createCard(this.newCard).subscribe(data => {
       window.location.reload();
     })
-
-
-
   }
 
   deleteCard(toDeleteId: number) {
@@ -182,13 +265,13 @@ export class EditFormComponent implements OnInit {
 
   editCard(newCard: UserDetailCard): void {
     this.aboutCService.editCard(newCard).subscribe({
-      next: (c)=>{
-      window.location.reload();
-    },
-    error: (err) =>{
-      console.error(err)
-    }
-  })
+      next: (c) => {
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
 
   }
   //Proyectos
@@ -239,11 +322,12 @@ export class EditFormComponent implements OnInit {
 
     this.projectCService.editProject(newCard).subscribe({
       next: (c) => {
-      window.location.reload();
-    },
-    error: (err) => {
-      console.error(err)
-    }})
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
 
   }
   //Guardar pestaña activa para restablecer al refrescar la página.

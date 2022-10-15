@@ -64,7 +64,8 @@ label {
 }
 
 #aboutMeForms,
-#projectForms {
+#projectForms,
+#skillForms {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

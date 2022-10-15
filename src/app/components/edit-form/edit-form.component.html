@@ -23,6 +23,8 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                     href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
+                <a class="nav-link" id="nav-skills-tab" data-bs-toggle="tab" data-bs-target="#nav-skills"
+                    href="#nav-profile" role="tab" aria-controls="nav-skills" aria-selected="true">Habilidades</a>
                 <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" data-bs-target="#nav-aboutMe"
                     href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
                 <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" data-bs-target="#nav-projects"
@@ -85,6 +87,58 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Habilidades</div>
+                        </div>
+
+                        <div class="card-text">
+                            <div [formGroup]="editSkillForm">
+                                <div class="forms" id="skillForms" formArrayName="skill">
+                                    <div *ngFor="let skill of skillForms.controls; let i = index">
+                                        <button class="delete-button" (click)="deleteSkill(skill.value.id)">
+                                            <div class=" btn btn-warning">
+                                                <i class="fa-solid fa-circle-xmark"></i>
+                                            </div>
+                                        </button>
+
+                                        <form [formGroupName]="i" (submit)="editSkill(skill.value)">
+
+                                            <br>
+                                            <input type="hidden" formControlName="id">
+                                            <label>Porcentaje</label>
+                                            <br>
+                                            <input type="text" formControlName="percent"
+                                                placeholder="{{skill.value.percent}}">
+                                            <br>
+
+                                            <label>Cuerpo</label>
+                                            <br>
+                                            <input type="text" formControlName="skill"
+                                                placeholder="{{skill.value.skill}}">
+                                            <br><br>
+                                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                                        </form>
+
+                                        <br><br>
+                                    </div>
+
+
+                                    <button *ngIf="!(previewSkillsInfo.length == 10)" id="add-button"
+                                        (click)="createSkillCircle()">
+                                        <div class="container shadow rounded" id="add">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

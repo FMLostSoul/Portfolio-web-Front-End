@@ -1,0 +1,21 @@
+<div class="container card">
+    <div class="card-body">
+        <div class="title text-center" id="#aboutMe">
+            <h2>Habilidades</h2>
+        </div>
+
+        <div class="cards">
+            <div *ngFor="let circle of skillCircles">
+                <div class="card">
+                    <div class="card-body shadow">
+                        <circle-progress [percent]="circle.percent" [radius]="100" [outerStrokeColor]="'#032129'"
+                            [outerStrokeWidth]="16" [animation]="false" [innerStrokeColor]="'rgb(144, 196, 196)'"
+                            [title]="circle.percent.toString()" [subtitle]="circle.skill" [subtitleFontSize]="'1.2rem'">
+                        </circle-progress>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

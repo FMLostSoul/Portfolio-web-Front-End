@@ -28,6 +28,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ProfileService } from './services/profile.service';
 import { AboutCardService } from './services/about-card.service';
 import { ProjectCardService } from './services/project-card.service';
+import { SkillsComponent } from './components/skills/skills.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ProjectCardService } from './services/project-card.service';
     PortfolioComponent,
     LoginFormComponent,
     EditComponent,
-    TestEnvComponent
+    TestEnvComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
