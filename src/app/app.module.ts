@@ -19,7 +19,6 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { EditComponent } from './components/edit/edit.component';
 import { TestEnvComponent } from './components/test-env/test-env.component';
 
-import { UiService } from './services/ui.service';
 import { InterceptorService } from './services/interceptor.service';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';

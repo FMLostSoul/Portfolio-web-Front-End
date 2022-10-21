@@ -28,18 +28,7 @@ export class UserProfileComponent implements OnInit {
     //Recibo el array de strings que contienen las url de las imágenes para luego mostrarlas.
     this.pictures = this.profileService.getImages();
   }
-/* 
-  placeholder(){
-    let div1:null | HTMLElement = document.getElementById("userName");
-    let div2:null | HTMLElement = document.getElementById("careerInfo");
 
-    $(window).load('',function (){
-    div1?.classList.remove("placeholder-glow");
-    div2?.classList.remove("placeholder-glow");
-  }
-    )
-}
-*/
 
 }
 

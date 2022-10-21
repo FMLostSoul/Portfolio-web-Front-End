@@ -162,7 +162,7 @@ export class EditFormComponent implements OnInit {
       },
 
       error: (err) => {
-        console.error(err);
+        console.log(err);
       }
     })
   }
@@ -188,7 +188,7 @@ export class EditFormComponent implements OnInit {
       },
 
       error: (err) => {
-        console.error(err);
+        console.log(err);
       }
     });
   }
@@ -200,23 +200,27 @@ export class EditFormComponent implements OnInit {
       },
 
       error: (err) => {
-        console.error(err);
+        console.log(err);
       }
     })
   }
 
   editSkill(newCircle: SkillCircle) {
-    this.skillCService.editSkillCircle(newCircle).subscribe({
-      next: (data) => {
-        window.location.reload();
-      },
+    if (newCircle.skill.length <= 17) { 
+      this.skillCService.editSkillCircle(newCircle).subscribe({
+        next: (data) => {
+          window.location.reload();
+        },
 
-      error: (err) => {
-        console.error(err);
-      }
-    })
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    } else {
+      alert("La habilidad debe tener como máximo 17 caracteres.")
+    }
+
   }
-
 
   //Sobre mí
   getCards() {
@@ -252,8 +256,13 @@ export class EditFormComponent implements OnInit {
       'title': 'Nueva Tarjeta',
       'body': 'Introducir Contenido'
     };
-    this.aboutCService.createCard(this.newCard).subscribe(data => {
-      window.location.reload();
+    this.aboutCService.createCard(this.newCard).subscribe({
+      next: (data) => {
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err);
+      }
     })
   }
 
@@ -269,7 +278,7 @@ export class EditFormComponent implements OnInit {
         window.location.reload();
       },
       error: (err) => {
-        console.error(err)
+        console.log(err)
       }
     })
 
@@ -325,7 +334,7 @@ export class EditFormComponent implements OnInit {
         window.location.reload();
       },
       error: (err) => {
-        console.error(err)
+        console.log(err)
       }
     })
 

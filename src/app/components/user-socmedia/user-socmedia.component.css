@@ -6,7 +6,7 @@
     padding: 1vw;
     padding-left: 0;
     border-left: 2px solid #032129;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .title {
@@ -19,6 +19,7 @@ li {
     display: flex;
     text-decoration: none;
     justify-content: flex-start;
+    align-items: center;
 }
 
 a {
@@ -39,6 +40,7 @@ a {
     padding-left: 5px;
     font-size: 1rem;
     
+    
 }
 
 @media screen and (max-width:955px) {
@@ -47,7 +49,8 @@ a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 75vw;
+        width:fit-content;
+        max-width: 90vw !important;
         height: auto;
         right: 0%;
         border-left: 0;
@@ -55,6 +58,7 @@ a {
         margin: 0;
         padding: 0;
         border: 0;
+        
     }
 
     .title {
@@ -76,6 +80,7 @@ a {
         width: auto;
         text-decoration: none;
         padding-left: 0%;
+      
     }
 
     ul {
@@ -84,5 +89,9 @@ a {
         flex-direction: column;
         padding: 0;
         align-items: center;
+    }
+
+    a{
+        overflow-wrap: anywhere;
     }
 }

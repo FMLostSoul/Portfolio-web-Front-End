@@ -56,11 +56,11 @@
                                         <br><br>
                                         <label>Foto de Perfil</label>
                                         <br>
-                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg">
+                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" (change)="loadPic($event)">
                                         <br><br>
                                         <label>Foto de Portada</label>
                                         <br>
-                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg">
+                                        <input type="file" class="file" accept="image/png, image/jpg, image/jpeg" (change)="loadBanner($event)">
                                         <br><br>
                                     </div>
                                     <div class="socMedia">
@@ -115,7 +115,7 @@
                                             <input type="hidden" formControlName="id">
                                             <label>Porcentaje</label>
                                             <br>
-                                            <input type="text" formControlName="percent"
+                                            <input type="number" formControlName="percent"
                                                 placeholder="{{skill.value.percent}}">
                                             <br>
 
