@@ -30,6 +30,8 @@ import { ProjectCardService } from './services/project-card.service';
 import { SkillsComponent } from './components/skills/skills.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { SkillsComponent } from './components/skills/skills.component';
     LoginFormComponent,
     EditComponent,
     TestEnvComponent,
-    SkillsComponent
+    SkillsComponent,
+
   ],
   imports: [
     BrowserModule,

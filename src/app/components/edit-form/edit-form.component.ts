@@ -15,6 +15,10 @@ import { SkillCircle } from '../skills/skillCircle';
 import { SkillService } from 'src/app/services/skill.service';
 import { createSkill } from './createSkill';
 import { data } from 'jquery';
+import { UserEducationCard } from '../user-detail-card/user-education-card';
+import { UserExperienceCard } from '../user-detail-card/user-experience-card';
+import { ExperienceCardService } from 'src/app/services/experience-card.service';
+import { EducationCardService } from 'src/app/services/education-card.service';
 
 
 
@@ -38,16 +42,22 @@ export class EditFormComponent implements OnInit {
   previewCardInfo: UserDetailCard[];
   previewProjectInfo: UserProjectCard[];
   previewSkillsInfo: SkillCircle[];
+  previewExperienceInfo: UserExperienceCard[];
+  previewEducationInfo: UserEducationCard[];
 
   editProfileForm: FormGroup;
   editSkillForm: FormGroup;
   editCardForm: FormGroup;
   editProjectForm: FormGroup;
+  editExperienceForm: FormGroup;
+  editEducationForm: FormGroup;
 
   constructor(private skillCService: SkillService,
     private aboutCService: AboutCardService,
     private profileService: ProfileService,
     private projectCService: ProjectCardService,
+    private experienceCService: ExperienceCardService,
+    private educationCService: EducationCardService,
     private formBuilder: FormBuilder,
     private storage: Storage) {
 
@@ -55,6 +65,8 @@ export class EditFormComponent implements OnInit {
     this.previewCardInfo = [];
     this.previewProjectInfo = [];
     this.previewSkillsInfo = [];
+    this.previewExperienceInfo = [];
+    this.previewEducationInfo = [];
     this.newProfile = new UserProfile;
     this.toEditCard = new UserDetailCard;
     this.newCard = new createCard;
@@ -81,6 +93,14 @@ export class EditFormComponent implements OnInit {
       project: new FormArray([])
     });
 
+    this.editExperienceForm = this.formBuilder.group({
+      experience: new FormArray([])
+    });
+
+    this.editEducationForm = this.formBuilder.group({
+      education: new FormArray([])
+    });
+
   }
 
   ngOnInit(): void {
@@ -90,6 +110,8 @@ export class EditFormComponent implements OnInit {
       this.setUrlForms();
     });
     this.getCards();
+    this.getEducation();
+    this.getExperiences();
     this.getSkills();
     this.getProjects();
     this.activeTab();
@@ -217,7 +239,7 @@ export class EditFormComponent implements OnInit {
         }
       })
     } else {
-      alert("La habilidad debe tener como máximo 17 caracteres.")
+      alert("La habilidad puede tener como máximo 17 caracteres.")
     }
 
   }
@@ -330,6 +352,118 @@ export class EditFormComponent implements OnInit {
   editProject(newCard: UserProjectCard): void {
 
     this.projectCService.editProject(newCard).subscribe({
+      next: (c) => {
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+
+  }
+
+  getExperiences() {
+    this.experienceCService.getExperienceInfo().subscribe(data => {
+      var i: number = 0;
+      for (let card of data) {
+        this.previewExperienceInfo[i] = data[i];
+        i++;
+      }
+      this.setExperienceForms();
+    })
+  }
+
+  setExperienceForms(): void {
+    this.previewExperienceInfo.forEach(experience => {
+      this.experienceForms.push(
+        new FormGroup({
+          id: new FormControl(experience.id),
+          title: new FormControl(experience.title),
+          body: new FormControl(experience.body),
+        })
+      )
+    })
+  }
+
+  get experienceForms(): FormArray {
+    return this.editExperienceForm.controls['experience'] as FormArray;
+  }
+
+  createExperience() {
+    this.newCard = {
+      'title': 'Nueva Tarjeta',
+      'body': 'Introducir Contenido'
+    };
+    this.experienceCService.createExperience(this.newCard).subscribe(data => {
+      window.location.reload();
+    })
+  }
+
+  deleteExperience(id: number) {
+    this.experienceCService.deleteExperience(id).subscribe(data => {
+      window.location.reload();
+    })
+  }
+
+  editExperience(newCard: UserExperienceCard): void {
+
+    this.experienceCService.editExperience(newCard).subscribe({
+      next: (c) => {
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+
+  }
+
+  getEducation() {
+    this.educationCService.getEducationInfo().subscribe(data => {
+      var i: number = 0;
+      for (let card of data) {
+        this.previewEducationInfo[i] = data[i];
+        i++;
+      }
+      this.setEducationForms();
+    })
+  }
+
+  setEducationForms(): void {
+    this.previewEducationInfo.forEach(education => {
+      this.educationForms.push(
+        new FormGroup({
+          id: new FormControl(education.id),
+          title: new FormControl(education.title),
+          body: new FormControl(education.body),
+        })
+      )
+    })
+  }
+
+  get educationForms(): FormArray {
+    return this.editEducationForm.controls['education'] as FormArray;
+  }
+
+  createEducation() {
+    this.newCard = {
+      'title': 'Nueva Tarjeta',
+      'body': 'Introducir Contenido'
+    };
+    this.educationCService.createEducation(this.newCard).subscribe(data => {
+      window.location.reload();
+    })
+  }
+
+  deleteEducation(id: number) {
+    this.educationCService.deleteEducation(id).subscribe(data => {
+      window.location.reload();
+    })
+  }
+
+  editEducation(newCard: UserEducationCard): void {
+
+    this.educationCService.editEducation(newCard).subscribe({
       next: (c) => {
         window.location.reload();
       },

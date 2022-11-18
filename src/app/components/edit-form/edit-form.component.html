@@ -24,11 +24,15 @@
                 <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                     href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Perfil</a>
                 <a class="nav-link" id="nav-skills-tab" data-bs-toggle="tab" data-bs-target="#nav-skills"
-                    href="#nav-profile" role="tab" aria-controls="nav-skills" aria-selected="true">Habilidades</a>
+                    href="#nav-skills" role="tab" aria-controls="nav-skills" aria-selected="true">Habilidades</a>
                 <a class="nav-link" id="nav-aboutMe-tab" data-bs-toggle="tab" data-bs-target="#nav-aboutMe"
                     href="#nav-aboutMe" role="tab" aria-controls="nav-aboutMe" aria-selected="false">Sobre mí</a>
                 <a class="nav-link" id="nav-projects-tab" data-bs-toggle="tab" data-bs-target="#nav-projects"
                     href="#nav-projects" role="tab" aria-controls="nav-projects" aria-selected="false">Proyectos</a>
+                <a class="nav-link" id="nav-experiences-tab" data-bs-toggle="tab" data-bs-target="#nav-experiences"
+                    href="#nav-experiences" role="tab" aria-controls="nav-experiences" aria-selected="false">Experiencia Laboral</a>   
+                <a class="nav-link" id="nav-education-tab" data-bs-toggle="tab" data-bs-target="#nav-education"
+                    href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Educación</a>    
             </div>
         </nav>
 
@@ -244,6 +248,108 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="nav-experiences" role="tabpanel" aria-labelledby="nav-experiences-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Experiencia Laboral</div>
+                        </div>
+        
+                        <div class="card-text">
+                            <div class="h5">Tarjetas</div>
+                            <div [formGroup]="editExperienceForm">
+                                <div class="forms" id="aboutMeForms" formArrayName="experience">
+                                    <div *ngFor="let card of experienceForms.controls; let i = index;">
+                                        <button class="delete-button" (click)="deleteExperience(card.value.id)">
+                                            <div class=" btn btn-warning">
+                                                <i class="fa-solid fa-circle-xmark"></i>
+                                            </div>
+                                        </button>
+                                        <form [formGroupName]="i" (submit)="editExperience(card.value)">
+        
+                                            <br>
+                                            <input type="hidden" formControlName="id">
+                                            <label for="title">Titulo</label>
+                                            <br>
+                                            <input type="text" formControlName="title">
+                                            <br>
+        
+                                            <label for="body">Cuerpo</label>
+                                            <br>
+                                            <input type="text" formControlName="body">
+                                            <br><br>
+                                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                                        </form>
+        
+                                        <br><br>
+                                    </div>
+                                    <button *ngIf="!(previewExperienceInfo.length == 6)" id="add-button"
+                                        (click)="createExperience()">
+                                        <div class="container shadow rounded" id="add">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tab-pane fade " id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+                <div class="card shadow rounded">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="h2">Educación</div>
+                        </div>
+        
+                        <div class="card-text">
+                            <div class="h5">Tarjetas</div>
+                            <div [formGroup]="editEducationForm">
+                                <div class="forms" id="projectForms" formArrayName="education">
+                                    <div *ngFor="let card of educationForms.controls; let i = index;">
+                                        <button class="delete-button" (click)="deleteEducation(card.value.id)">
+                                            <div class=" btn btn-warning">
+                                                <i class="fa-solid fa-circle-xmark"></i>
+                                            </div>
+                                        </button>
+                                        <form [formGroupName]="i" (submit)="editEducation(card.value)">
+        
+                                            <br>
+                                            <input type="hidden" formControlName="id">
+                                            <label for="title">Titulo</label>
+                                            <br>
+                                            <input type="text" formControlName="title">
+                                            <br>
+        
+                                            <label for="body">Cuerpo</label>
+                                            <br>
+                                            <input type="text" formControlName="body">
+                                            <br><br>
+                                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                                        </form>
+        
+                                        <br><br>
+                                    </div>
+                                    <button *ngIf="!(previewEducationInfo.length == 4)" id="add-button"
+                                        (click)="createEducation()">
+                                        <div class="container shadow rounded" id="add">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        
     </div>
+
 </div>
+
+    
+
+    

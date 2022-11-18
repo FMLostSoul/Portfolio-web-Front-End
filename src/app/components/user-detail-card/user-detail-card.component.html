@@ -33,6 +33,79 @@
   </div>
 </div>
 
+
+<div class="space"></div>
+
+<div class="container shadow rounded">
+  <div class="title text-center">
+    <h2>Experiencia Laboral</h2>
+  </div>
+  <div class="cardsContainer">
+
+    <div class="card-column">
+      <div *ngFor="let card of experiencesLeft">
+        <div class="card shadow text-white mb-3 d-inline-block py-3" id="col1">
+          <div class="card-body">
+            <h4 class="card-title">{{card.title}}</h4>
+            <p class="card-text">
+              {{card.body}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-column">
+      <div *ngFor="let card of experiencesRight">
+        <div class="card shadow text-white mb-3 d-inline-block bg-gradient py-3" id="col2">
+          <div class="card-body">
+            <h4 class="card-title">{{card.title}}</h4>
+            <p class="card-text">
+              {{card.body}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space"></div>
+
+
+<div class="container shadow rounded">
+  <div class="title text-center">
+    <h2>Educación</h2>
+  </div>
+  <div class="cardsContainer">
+
+    <div class="card-column">
+      <div *ngFor="let card of educationLeft">
+        <div class="card shadow text-white mb-3 d-inline-block py-3" id="col1">
+          <div class="card-body">
+            <h4 class="card-title">{{card.title}}</h4>
+            <p class="card-text">
+              {{card.body}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-column">
+      <div *ngFor="let card of educationRight">
+        <div class="card shadow text-white mb-3 d-inline-block bg-gradient py-3" id="col2">
+          <div class="card-body">
+            <h4 class="card-title">{{card.title}}</h4>
+            <p class="card-text">
+              {{card.body}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="space"></div>
 
 <div class="container shadow rounded">
